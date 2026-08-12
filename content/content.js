@@ -485,6 +485,39 @@ window.ARTHAM = {
             "Every piece carries the natural textures of the making process",
             "Made to order · ships in 7–10 days"
           ]
+        },
+        {
+          name: "Terracotta Lattice Vase",
+          description: "A net of beaded thread laid over the clay like a second skin, knotted off in a small tassel at the base.",
+          image: "content/images/terracotta/vase-lattice.jpg",
+          alt: "A hand-built terracotta vessel wrapped in a diamond lattice of green beaded thread, held in a hand against greenery",
+          details: [
+            "Hand-built terracotta, kiln-fired",
+            "Wrapped in a hand-knotted bead lattice",
+            "Made to order · ships in 7–10 days"
+          ]
+        },
+        {
+          name: "Terracotta Ridged Vase",
+          description: "Carved in a run of wave-like ridges, with a scatter of beads set right into the grooves.",
+          image: "content/images/terracotta/vase-ridged.jpg",
+          alt: "A hand-built terracotta vessel carved with parallel ridges and small clusters of coloured beads, held in a hand against greenery",
+          details: [
+            "Hand-built terracotta, kiln-fired",
+            "Bead clusters set into the carved surface",
+            "Made to order · ships in 7–10 days"
+          ]
+        },
+        {
+          name: "Terracotta Palm Lamp",
+          description: "Palm fronds carved into the clay, banded in jute, lit from the inside so the carving throws its own shadow.",
+          image: "content/images/terracotta/lamp-palm.jpg",
+          alt: "A hand-built terracotta lamp carved with palm fronds and wound with a jute band, glowing from a bulb inside",
+          details: [
+            "Hand-built terracotta, kiln-fired",
+            "Wound with a jute band and bead detailing",
+            "Made to order · ships in 7–10 days"
+          ]
         }
       ]
     }
