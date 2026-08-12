@@ -1,0 +1,8 @@
+# the built preview — regenerate it any time with: node tools/build-preview.mjs
+dist/
+
+# files the Mac and Windows leave behind when you drag photos into folders
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
