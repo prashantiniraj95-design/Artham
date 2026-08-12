@@ -79,7 +79,15 @@
     return svg;
   }
 
-  function pictureFrame(image, alt, eager) {
+  /* The two lines from the catalogue's own back-cover copy for these two
+     product families — short enough to fit an actual swing tag, unlike the
+     paragraphs they're pulled from. `product.tag` in content.js picks one. */
+  var TAG_TEXT = {
+    trinket: "Celebrating the joy of handmade.",
+    terracotta: "Terracotta, reimagined by hand."
+  };
+
+  function pictureFrame(image, alt, eager, tag) {
     var frame = el("div", "object__frame");
     ["tl", "tr", "bl", "br"].forEach(function (corner) {
       var mount = el("i", "mount mount--" + corner);
@@ -101,6 +109,14 @@
       frame.appendChild(img);
     } else {
       frame.appendChild(el("div", "object__pending", "photo coming soon"));
+    }
+
+    if (tag && TAG_TEXT[tag]) {
+      var swing = el("div", "object__tag");
+      swing.setAttribute("aria-hidden", "true");   // decorative repeat of the description
+      swing.appendChild(el("div", "object__tag-string"));
+      swing.appendChild(el("div", "object__tag-card", TAG_TEXT[tag]));
+      frame.appendChild(swing);
     }
     return frame;
   }
@@ -272,7 +288,7 @@
       var list = el("div", "objects");
       products.forEach(function (product) {
         var object = el("article", "object reveal");
-        object.appendChild(pictureFrame(product.image, product.alt, index === 0));
+        object.appendChild(pictureFrame(product.image, product.alt, index === 0, product.tag));
 
         var body = el("div", "object__body");
         body.appendChild(el("h3", "object__name", product.name || ""));
