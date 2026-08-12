@@ -220,6 +220,27 @@ don't want a photo.
 
 ---
 
+## The hanging tag
+
+Straight after your note, and before the first chapter, a swing tag hangs from
+a string strung across the page. It's in `content.js` just below `maker`:
+
+```js
+tag: {
+  paragraphs: [
+    "First paragraph.",
+    "Second paragraph."
+  ],
+  closing: "Celebrating the joy of handmade."
+}
+```
+
+`closing` is the last line, set in the handwriting. Leave it out and the tag
+just ends with your last paragraph. Delete the whole `tag: { … }` block —
+including the comma after it — and the tag and its string disappear.
+
+---
+
 ## Care and contact
 
 Also in `content.js`, at the bottom — `care` (the "little care goes a long

@@ -79,15 +79,7 @@
     return svg;
   }
 
-  /* The two lines from the catalogue's own back-cover copy for these two
-     product families — short enough to fit an actual swing tag, unlike the
-     paragraphs they're pulled from. `product.tag` in content.js picks one. */
-  var TAG_TEXT = {
-    trinket: "Celebrating the joy of handmade.",
-    terracotta: "Terracotta, reimagined by hand."
-  };
-
-  function pictureFrame(image, alt, eager, tag) {
+  function pictureFrame(image, alt, eager) {
     var frame = el("div", "object__frame");
     ["tl", "tr", "bl", "br"].forEach(function (corner) {
       var mount = el("i", "mount mount--" + corner);
@@ -111,13 +103,6 @@
       frame.appendChild(el("div", "object__pending", "photo coming soon"));
     }
 
-    if (tag && TAG_TEXT[tag]) {
-      var swing = el("div", "object__tag");
-      swing.setAttribute("aria-hidden", "true");   // decorative repeat of the description
-      swing.appendChild(el("div", "object__tag-string"));
-      swing.appendChild(el("div", "object__tag-card", TAG_TEXT[tag]));
-      frame.appendChild(swing);
-    }
     return frame;
   }
 
@@ -238,6 +223,45 @@
     section.appendChild(inner);
   }
 
+  /* ── the tag ──────────────────────────────────────────────────────────
+     A swing tag strung across the page between the introduction and the
+     first chapter — the string spans the full width and sags in the middle,
+     and the card hangs off the lowest point of it, the way one would.    */
+
+  function renderTag() {
+    var tag = data.tag;
+    var section = document.getElementById("tag");
+    if (!section || !tag) return;
+
+    var lines = tag.paragraphs || [];
+    if (!lines.length && !tag.closing) return;
+
+    /* the string, drawn rather than ruled: preserveAspectRatio="none" lets it
+       stretch to whatever the window is. The stroke is given in viewBox units
+       and would stretch with it, so it's set non-scaling to stay a hair thick
+       at every width. */
+    var string = el("div", "tag__string");
+    string.setAttribute("aria-hidden", "true");
+    string.innerHTML =
+      '<svg viewBox="0 0 1000 48" preserveAspectRatio="none" fill="none">' +
+        '<path d="M0 6 Q250 40 500 42 Q750 40 1000 6" stroke="currentColor" ' +
+        'stroke-width="1.6" stroke-linecap="round" ' +
+        'vector-effect="non-scaling-stroke"/>' +
+      '</svg>';
+    section.appendChild(string);
+
+    var card = el("div", "tag__card reveal");
+    lines.forEach(function (text) { card.appendChild(el("p", null, text)); });
+    if (tag.closing) card.appendChild(el("p", "tag__closing", tag.closing));
+    section.appendChild(card);
+
+    /* the short drop from the sag into the punched hole. Last in the DOM so it
+       lies over the card, the way a string does before it threads through. */
+    var cord = el("div", "tag__cord");
+    cord.setAttribute("aria-hidden", "true");
+    section.appendChild(cord);
+  }
+
   /* ── one chapter ──────────────────────────────────────────────────────── */
 
   function renderChapter(chapter, index) {
@@ -288,7 +312,7 @@
       var list = el("div", "objects");
       products.forEach(function (product) {
         var object = el("article", "object reveal");
-        object.appendChild(pictureFrame(product.image, product.alt, index === 0, product.tag));
+        object.appendChild(pictureFrame(product.image, product.alt, index === 0));
 
         var body = el("div", "object__body");
         body.appendChild(el("h3", "object__name", product.name || ""));
@@ -514,7 +538,8 @@
 
   var SNAP = ".chapter__story-text, .chapter__hint, " +
              ".maker__body p, .care__intro, .care__closing, .care__list, " +
-             ".object__desc, .object__details-list, .contact__closing";
+             ".object__desc, .object__details-list, .contact__closing, " +
+             ".tag__card p";
 
   /* Where the block's first baseline falls, in page coordinates.
 
@@ -600,6 +625,7 @@
 
   renderCover();
   renderMaker();
+  renderTag();
   var noteGroups = renderChapters();
   renderCare();
   renderContact();

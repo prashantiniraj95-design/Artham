@@ -387,6 +387,84 @@ h1, h2, h3 { font-family: var(--brand); font-weight: 400; line-height: 1.2; marg
 }
 .maker__portrait img { width: 100%; }
 
+/* ── the tag ────────────────────────────────────────────────────────────────
+   A swing tag strung right across the page, between the introduction and the
+   first chapter. The string spans the full width and sags in the middle; the
+   card hangs off that lowest point, so the two read as one object rather than
+   a line with a box parked under it.                                        */
+.tag {
+  position: relative;
+  padding: 0 var(--gutter) clamp(3rem, 9vh, 6rem);
+}
+
+/* warmer and heavier than the ruling on purpose — at the rule's own colour and
+   weight it reads as one more printed line rather than a string */
+.tag__string {
+  color: var(--ink-soft);
+  line-height: 0;                 /* no stray descender gap under the svg */
+  opacity: 0.55;
+}
+.tag__string svg {
+  display: block;
+  width: 100%;
+  height: 48px;
+}
+
+.tag__card {
+  margin: 0 auto;
+  max-width: 34rem;
+  position: relative;
+  z-index: 1;
+  padding: clamp(2.1rem, 5vw, 2.8rem) clamp(1.5rem, 4vw, 2.2rem) clamp(1.6rem, 4vw, 2rem);
+  background: var(--paper-card);
+  border: 1.2px solid var(--rule-faint);
+  /* the corners a real tag has: two rounded at the top, square at the foot */
+  border-radius: 14px 14px 3px 3px;
+  box-shadow: 0 14px 30px -22px var(--shadow);
+  transform: rotate(-0.5deg);
+  text-align: center;
+}
+
+/* the punched hole the string threads through */
+.tag__card::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.2px solid var(--rule-faint);
+}
+
+/* the drop from the lowest point of the sag into that hole. Positioned rather
+   than flowed so it can lie across the top of the card without pushing it. */
+.tag__cord {
+  position: absolute;
+  left: 50%;
+  top: 42px;                       /* the sag's lowest point */
+  width: 1.6px;
+  height: 21px;                    /* down to the middle of the hole */
+  margin-left: -0.8px;
+  background: var(--ink-soft);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+.tag__card p {
+  margin: 0 0 var(--rule-gap);
+  color: var(--ink-soft);
+}
+.tag__card p:last-child { margin-bottom: 0; }
+
+.tag__closing {
+  font-family: var(--hand);
+  font-size: 1.3rem;
+  color: var(--maroon);
+}
+
 /* ── a chapter ──────────────────────────────────────────────────────────── */
 .chapter {
   position: relative;
@@ -520,54 +598,6 @@ h1, h2, h3 { font-family: var(--brand); font-weight: 400; line-height: 1.2; marg
 .mount--tr { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
 .mount--bl { bottom: 0; left: 0; clip-path: polygon(0 0, 0 100%, 100% 100%); }
 .mount--br { bottom: 0; right: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-
-/* a little swing tag, clipped to the corner of a product photo — a punched
-   hole, a short string, and a kraft-paper card carrying one line from the
-   catalogue. Rotates as a single rigid piece, the way a tag on a real
-   string would hang and settle at its own angle, not the frame's. */
-.object__tag {
-  position: absolute;
-  top: -22px;
-  right: 14px;
-  width: 96px;
-  z-index: 6;
-  transform: rotate(8deg);
-  pointer-events: none;
-}
-.object:nth-child(even) .object__tag { right: auto; left: 14px; transform: rotate(-7deg); }
-
-.object__tag-string {
-  width: 1.4px;
-  height: 16px;
-  margin: 0 auto;
-  background: var(--rule);
-}
-.object__tag-card {
-  position: relative;
-  margin-top: -2px;
-  padding: 9px 8px 10px;
-  background: var(--paper-card);
-  border: 1px solid var(--rule-faint);
-  border-radius: 2px;
-  box-shadow: 0 8px 16px -12px var(--shadow);
-  font-family: var(--hand);
-  font-size: 0.92rem;
-  line-height: 1.22;
-  color: var(--maroon);
-  text-align: center;
-}
-.object__tag-card::before {
-  content: "";
-  position: absolute;
-  top: -4.5px;
-  left: 50%;
-  width: 7px;
-  height: 7px;
-  margin-left: -3.5px;
-  border-radius: 50%;
-  background: var(--paper);
-  border: 1px solid var(--rule-faint);
-}
 
 .object__body { display: grid; gap: 0.35rem; }
 

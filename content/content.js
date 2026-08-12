@@ -43,6 +43,20 @@ window.ARTHAM = {
     portraitAlt: "Prashantini Raj sitting in the shade of a curved concrete arch, smiling, in a printed shirt"
   },
 
+  /* ── The tag ───────────────────────────────────────────────────────────────
+     Hangs across the page between the introduction and the first chapter,
+     like a swing tag off a finished piece. Delete this whole block if you
+     ever want it gone.
+     ------------------------------------------------------------------------ */
+  tag: {
+    paragraphs: [
+      "Inspired by familiar sights, objects, and little memories from everyday life, this ceramic trinket is a celebration of noticing the details we often overlook.",
+      "Handcrafted in clay, some pieces are further embellished with embroidery and beads, bringing together materials and techniques that don't usually meet.",
+      "At Artham, making is an exploration of memory, material, and play — finding new ways to tell familiar stories through handmade objects."
+    ],
+    closing: "Celebrating the joy of handmade."
+  },
+
   /* ── The chapters ──────────────────────────────────────────────────────────
      The illustrations and the stories come from the Artham catalogue. Each
      chapter holds the pieces that belong to that memory, whatever they happen
@@ -73,16 +87,14 @@ window.ARTHAM = {
           description: "A dangling reminder of colors we once chased.",
           image: "content/images/kites/kite-keychain.jpg",
           alt: "A ceramic kite keychain in yellow, red, blue and green with a knotted thread tail, hanging from a door bolt",
-          details: ["Hand-built ceramic, hand-painted"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted"]
         },
         {
           name: "Kite Charm",
           description: "A slice of the sky that clips where you need it.",
           image: "content/images/kites/kite-charm.jpg",
           alt: "A small ceramic kite charm with a red and green tassel, resting on an Artham card",
-          details: ["Hand-built ceramic, hand-painted"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted"]
         }
       ]
     },
@@ -111,8 +123,7 @@ window.ARTHAM = {
           description: "A tiny folded dream to carry with you — as a pin, or as a magnet.",
           image: "content/images/paper-boats/boat-pins.jpg",
           alt: "Two ceramic paper boats, one red and one yellow, on striped Artham cards",
-          details: ["Hand-built ceramic, hand-painted", "Available as a pin or a magnet"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted", "Available as a pin or a magnet"]
         },
         {
           name: "Paper Boat Postcard",
@@ -152,8 +163,7 @@ window.ARTHAM = {
           description: "A temple tank ripple held still on your fridge.",
           image: "content/images/fish/fish-brooches.jpg",
           alt: "Three ceramic fish magnets in white with red and yellow painted patterns and coloured bead stitching",
-          details: ["Hand-built ceramic, hand-painted, with bead-stitched detailing"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted, with bead-stitched detailing"]
         }
       ]
     },
@@ -179,24 +189,21 @@ window.ARTHAM = {
           description: "The guardian of the doorway, shrunk down to pin on a collar. Horns, moustache, tongue and all.",
           image: "content/images/drishti/drishti-brooch.jpg",
           alt: "A ceramic Mr. Drishti brooch with blue horns and a red tongue, on a card printed with a house door",
-          details: ["Hand-built ceramic, hand-painted"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted"]
         },
         {
           name: "Drishti Keychain",
           description: "The face, with a chilli and a lemon hanging below — the way they're strung at a doorway.",
           image: "content/images/drishti/drishti-keychain.jpg",
           alt: "A round ceramic drishti face keychain with a chilli and lemon charm, hanging from a brass door bolt",
-          details: ["Hand-built ceramic, hand-painted"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted"]
         },
         {
           name: "Drishti Charm",
           description: "The smallest of them, on a clasp, for a bag or a set of keys.",
           image: "content/images/drishti/drishti-charm.jpg",
           alt: "A small round ceramic drishti charm on a lobster clasp, resting on an Artham card",
-          details: ["Hand-built ceramic, hand-painted"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted"]
         },
         {
           name: "Mr. Drishti Embroidery Art Frame",
@@ -239,8 +246,7 @@ window.ARTHAM = {
           description: "A tiny piece of Chettinad heritage to carry.",
           image: "content/images/athangudi/athangudi-pins.jpg",
           alt: "Three square ceramic magnets painted with Athangudi tile patterns in yellow, green and red, stitched with beads",
-          details: ["Hand-built ceramic, hand-painted, with bead-stitched detailing"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted, with bead-stitched detailing"]
         }
       ]
     },
@@ -318,8 +324,7 @@ window.ARTHAM = {
           description: "Positivi-TEA, Anxie-TEA, Curiosi-TEA. What's your mood today?",
           image: "content/images/chai/chai-pins.jpg",
           alt: "A card of four ceramic chai-glass pins with hand-drawn faces, captioned what's your mood today",
-          details: ["Hand-built ceramic, hand-painted"],
-          tag: "trinket"
+          details: ["Hand-built ceramic, hand-painted"]
         }
       ]
     },
@@ -397,8 +402,7 @@ window.ARTHAM = {
             "Each piece carries its own tiny quirks and imperfections",
             "Perches on a desk, bedside or bookshelf",
             "Made to order · ships in 7–10 days"
-          ],
-          tag: "trinket"
+          ]
         }
       ]
     },
@@ -483,8 +487,7 @@ window.ARTHAM = {
             "Charm designs and arrangement vary — every vase is one of a kind",
             "Suitable for dried flowers and decorative display",
             "Made to order · ships in 7–10 days"
-          ],
-          tag: "terracotta"
+          ]
         },
         {
           name: "Terracotta Table Lamp",
@@ -495,8 +498,7 @@ window.ARTHAM = {
             "Hand-built terracotta, kiln-fired",
             "Every piece carries the natural textures of the making process",
             "Made to order · ships in 7–10 days"
-          ],
-          tag: "terracotta"
+          ]
         },
         {
           name: "Terracotta Lattice Vase",
@@ -507,8 +509,7 @@ window.ARTHAM = {
             "Hand-built terracotta, kiln-fired",
             "Wrapped in a hand-knotted bead lattice",
             "Made to order · ships in 7–10 days"
-          ],
-          tag: "terracotta"
+          ]
         },
         {
           name: "Terracotta Ridged Vase",
@@ -519,8 +520,7 @@ window.ARTHAM = {
             "Hand-built terracotta, kiln-fired",
             "Bead clusters set into the carved surface",
             "Made to order · ships in 7–10 days"
-          ],
-          tag: "terracotta"
+          ]
         },
         {
           name: "Terracotta Palm Lamp",
@@ -531,8 +531,7 @@ window.ARTHAM = {
             "Hand-built terracotta, kiln-fired",
             "Wound with a jute band and bead detailing",
             "Made to order · ships in 7–10 days"
-          ],
-          tag: "terracotta"
+          ]
         }
       ]
     }
