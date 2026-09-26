@@ -115,3 +115,19 @@ Still to add:
 - Everything respects `prefers-reduced-motion` and `prefers-color-scheme`.
 - Sticky notes are keyboard-operable: `Tab` to one, arrow keys to move it,
   `Shift` + arrow to move it further.
+
+---
+
+## Oru Naal — Collection One (preview)
+
+`oru-naal/` is a standalone page for the first bag collection: korai paai
+from Pathamadai, finished in leather. It reads as one day in one house —
+Veyil (midday), Nizhal (afternoon), Malai (evening), Vizha (festival night) —
+then the craft, an Instagram strip, and a short shop with a bag that sends the
+order on WhatsApp.
+
+Open `oru-naal/index.html`. Photos, weave swatches and drawings come from the
+lookbook and the Pathamadai story cards. **Placeholders still to replace:**
+prices (in `oru-naal/oru-naal.js` and the `.price` lines in the page), the
+"hands stitching the leather edge" photo, and two Instagram tiles (the woven
+`<canvas>` squares).
