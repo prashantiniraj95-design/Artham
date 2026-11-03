@@ -1,22 +1,18 @@
-# Concept photographs
+# Chapter photographs
 
-Each chapter of Naal opens on a full-screen scene. Right now those scenes are
-drawn in code: the noon sun for Veyil, light through a window grill onto
-red-oxide tiles for Nizhal, dusk with a lamp and a paai for Malai, and festival
-lights for Vizha.
+Each chapter of Naal opens on a full-screen photograph, with a second one set in
+a frame on top:
 
-To put a real photograph behind a scene, drop it in this folder with one of
-these exact names:
-
-| File | Chapter | What to look for |
+| Chapter | Background | Framed |
 |---|---|---|
-| `veyil.jpg`  | I · Midday          | Harsh noon sun on a street or market, a katta pai under an arm |
-| `nizhal.jpg` | II · Afternoon      | Light through a window grill lying in squares on a tiled floor |
-| `malai.jpg`  | III · Evening       | Dusk. A paai rolled out, people gathering, a lamp lit |
-| `vizha.jpg`  | IV · Festival night | Temple or wedding lights, jasmine, silk, colour |
+| I · Veyil   | `veyil-street.jpg` | `veyil-kolam.jpg` |
+| II · Nizhal | `nizhal-room.jpg`  | `nizhal-cane.jpg` |
+| III · Malai | `malai-paai.jpg`   | none |
+| IV · Vizha  | `vizha-saree.jpg`  | `vizha-bangles.jpg` |
 
-That's all. The page finds the photo and lays it over the scene, with a dark
-fade at the bottom so the chapter title stays readable. `.webp` works too.
+To swap one, replace the file and keep its name. If a photo is missing, the
+chapter falls back to its drawn scene: the noon sun, grill light on red-oxide
+tiles, dusk with a lamp, or festival lights.
 
-Use photos you own or have a licence for. Landscape, about 2000px wide and
-under 500 KB.
+These are reference images found online. Before the site goes public, replace
+them with your own shoot or get permission from the photographers.

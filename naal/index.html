@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Naal by Artham — a day, woven</title>
-<meta name="description" content="Naal is Artham's first collection: four bags made from korai paai, hand-woven in Pathamadai, Tamil Nadu, and finished in leather. One day through one house — Veyil, Nizhal, Malai and Vizha.">
-<meta name="theme-color" content="#6E1214">
+<title>Naal by Artham · a day, woven</title>
+<meta name="description" content="Naal is Artham's first collection: four bags made from korai paai, hand-woven in Pathamadai, Tamil Nadu, and finished in leather. One day through one house: Veyil, Nizhal, Malai and Vizha.">
+<meta name="theme-color" content="#3A2C24">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Artham">
-<meta property="og:title" content="Naal by Artham — a day, woven">
+<meta property="og:title" content="Naal by Artham · a day, woven">
 <meta property="og:description" content="Korai paai from Pathamadai, carried out of the house. Four bags for four hours of one day.">
 <meta property="og:image" content="images/bags/veyil.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
   "@context": "https://schema.org",
   "@type": "Brand",
   "name": "Artham",
-  "slogan": "Naal — a day, woven.",
+  "slogan": "Naal. A day, woven.",
   "description": "Bags made from korai paai, hand-woven in Pathamadai, Tamil Nadu, and finished in leather.",
   "founder": [{"@type": "Person", "name": "Prashantini Raj"}, {"@type": "Person", "name": "Dhiraj"}]
 }
@@ -37,7 +37,7 @@
 
 <!-- ─── top bar ─────────────────────────────────────────────── -->
 <header class="bar" id="bar">
-  <a class="bar__brand" href="#top" aria-label="Artham — back to the top">
+  <a class="bar__brand" href="#top" aria-label="Artham, back to the top">
     <svg class="bar__mark" aria-hidden="true"><use href="#mark"/></svg>
     <svg class="bar__word" aria-hidden="true"><use href="#wordmark"/></svg>
   </a>
@@ -53,17 +53,19 @@
 </header>
 
 <!-- ─── the hour, kept like a tear-off calendar sheet ──────── -->
-<div class="sheet" id="sheet" aria-hidden="true">
-  <div class="sheet__top"><span>நாள்</span><span>NAAL</span></div>
-  <div class="sheet__time" id="sheetTime">06:00</div>
-  <div class="sheet__name" id="sheetName">காலை · morning</div>
-  <div class="sheet__holes"><i></i><i></i></div>
-</div>
+<a class="sheet" id="sheet" href="#naal" aria-label="Today">
+  <span class="sheet__top"><span id="sheetMonth">NOV</span><span id="sheetYear">2026</span></span>
+  <span class="sheet__date" id="sheetDate">3</span>
+  <span class="sheet__day" id="sheetDay" lang="ta">செவ்வாய்</span>
+  <span class="sheet__time" id="sheetTime">2:48 pm</span>
+  <span class="sheet__hour" id="sheetHour">Nizhal hour</span>
+  <span class="sheet__holes" aria-hidden="true"><i></i><i></i></span>
+</a>
 
 <main id="top">
 
 <!-- ═══ HERO ═══════════════════════════════════════════════════ -->
-<section class="hero" data-bg="#6E1214" data-fg="#F4E9DA" data-time="360" data-tamil="காலை" data-name="morning">
+<section class="hero" data-bg="#3A2C24" data-fg="#F2E8DA" data-time="360" data-tamil="காலை" data-name="morning">
   <canvas class="hero__loom" id="loom" aria-hidden="true"></canvas>
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__frame" aria-hidden="true"></div>
@@ -72,7 +74,7 @@
     <p class="eyebrow eyebrow--gold">Artham &nbsp;·&nbsp; Collection One</p>
     <h1 class="hero__title"><span class="hero__ta" lang="ta">நாள்</span><span class="hero__naal">Naal</span></h1>
     <p class="hero__sub">A day, woven.</p>
-    <p class="hero__lede">Four bags made from <em>korai paai</em>, hand-woven in Pathamadai — following one day through one house, from the noon sun to a festival night.</p>
+    <p class="hero__lede">Four bags made from <em>korai paai</em>, hand-woven in Pathamadai. They follow one day through one house, from the noon sun to a festival night.</p>
     <div class="hero__ctas">
       <a class="btn btn--light" href="#paai">Begin the day</a>
       <a class="btn btn--ghost" href="#order">See the bags</a>
@@ -82,22 +84,21 @@
   <a class="hero__cue" href="#paai" aria-label="Scroll to the story"><span></span></a>
 </section>
 
-<!-- ═══ THE PAAI — nostalgia, unrolled ════════════════════════ -->
+<!-- ═══ THE PAAI · nostalgia, unrolled ════════════════════════ -->
 <section class="paai" id="paai" data-bg="#F2E8DA" data-fg="#2B1913" data-time="420" data-tamil="காலை" data-name="morning">
   <div class="paai__sticky">
     <header class="paai__head">
       <p class="eyebrow">Before the collection</p>
-      <blockquote class="paai__quote">The paai — a familiar part of every home. Spread out for sleeping, rolled out for festivals and gatherings, then tucked away behind the door until the next time.</blockquote>
+      <blockquote class="paai__quote">The paai. A familiar part of every home. Spread out for sleeping, rolled out for festivals and gatherings, then tucked away behind the door until the next time.</blockquote>
     </header>
     <div class="paai__stage">
-      <div class="mat" id="mat" aria-hidden="true">
-        <div class="mat__weave"></div>
-        <div class="mat__roll" id="matRoll"></div>
+      <div class="mat" id="mat">
+        <img class="mat__photo" src="images/place/paai-unrolling.webp" alt="A korai paai unrolling: natural grass with a purple and red stripe, edged in orange cloth">
       </div>
     <ol class="memories" id="memories">
-      <li style="--x:8%;--y:18%;--r:-3deg">Unrolled on the cool floor after lunch — the whole house asleep by two.</li>
+      <li style="--x:8%;--y:18%;--r:-3deg">Unrolled on the cool floor after lunch, the whole house asleep by two.</li>
       <li style="--x:30%;--y:60%;--r:2deg">You woke with its weave printed on your cheek.</li>
-      <li style="--x:50%;--y:14%;--r:-1.5deg">Guests at the door — and before the coffee, the paai.</li>
+      <li style="--x:50%;--y:14%;--r:-1.5deg">Guests at the door, and before the coffee, the paai.</li>
       <li style="--x:68%;--y:56%;--r:2.5deg">Summer nights on the terrace, counting stars from it.</li>
       <li style="--x:80%;--y:16%;--r:-2deg">Then rolled tight, tied, and tucked behind the door. Until the next time.</li>
     </ol>
@@ -105,9 +106,8 @@
   </div>
 </section>
 
-<!-- ═══ ARTHAM — meaning ══════════════════════════════════════ -->
+<!-- ═══ ARTHAM · meaning ══════════════════════════════════════ -->
 <section class="meaning" id="artham" data-bg="#F2E8DA" data-fg="#2B1913" data-time="480" data-tamil="காலை" data-name="morning">
-  <p class="paai__after reveal">Every home had one. Nobody ever called it beautiful.<br><em>We think it always was.</em></p>
   <div class="meaning__ta" lang="ta" aria-hidden="true">அர்த்தம்</div>
   <div class="meaning__grid">
     <div class="meaning__title reveal">
@@ -115,31 +115,32 @@
       <p class="gloss">meaning</p>
     </div>
     <div class="meaning__body reveal">
-      <p class="lead">Artham began on paper — patterns drawn from whatever was already in view. <em>Tile. Shadow. Grain.</em> The grid of a window at four in the afternoon.</p>
+      <p class="lead">Artham began on paper, with patterns drawn from whatever was already in view. <em>Tile. Shadow. Grain.</em> The grid of a window at four in the afternoon.</p>
       <p>Bags came later, and only because the paai was never exotic to us. One of us reads pattern for a living. The other grew up a short road from the looms, where a mat is simply a mat.</p>
-      <p>Between those two habits of seeing, the weave was translated — carried across into a different object, with its ordinariness intact.</p>
+      <p>Between those two habits of seeing, the weave was translated. It was carried across into a different object, with its ordinariness intact.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ PATHAMADAI — place and craft ══════════════════════════ -->
+<!-- ═══ PATHAMADAI · place and craft ══════════════════════════ -->
 <section class="place" id="pathamadai" data-bg="#EBDDC9" data-fg="#2B1913" data-time="540" data-tamil="காலை" data-name="morning">
   <figure class="place__hero">
-    <img src="images/place/rolled-paai.jpg" alt="Korai paai rolled and bound with wire, standing in a row — purple, yellow, red and teal checks" data-parallax="0.12" loading="lazy">
+    <img src="images/place/rolled-paai.jpg" alt="Korai paai rolled and bound with wire, standing in a row, in purple, yellow, red and teal checks" data-parallax="0.12" loading="lazy">
     <figcaption class="place__overlay">
       <p class="eyebrow eyebrow--gold">The place</p>
       <h2 class="display display--light">Pathamadai</h2>
       <p class="gloss gloss--light">where the paai is woven</p>
     </figcaption>
-    <span class="place__cap">Korai grass — rolled and waiting</span>
+    <span class="place__cap">Korai grass, rolled and waiting</span>
   </figure>
 
   <div class="place__story">
-    <figure class="postcard reveal">
-      <img src="images/story/pathamadai.jpg" alt="Illustration of a weaver at a floor loom, korai strands fanned across her lap" loading="lazy">
+    <figure class="photo reveal">
+      <img src="images/place/weaver-at-loom.jpg" alt="A weaver in Pathamadai seated at a floor loom, the cotton warp stretched out and bundles of korai grass beside her" loading="lazy">
+      <figcaption>At the loom in Pathamadai. Photo: Be On The Road</figcaption>
     </figure>
     <div class="place__text reveal">
-      <p class="lead">In Pathamadai, a village on the banks of the Thamirabarani in Tirunelveli, korai grass has been woven into paai for generations — fine enough, it is said, to fold like silk.</p>
+      <p class="lead">In Pathamadai, a village on the banks of the Thamirabarani in Tirunelveli, korai grass has been woven into paai for generations, fine enough, it is said, to fold like silk.</p>
       <p>The grass is split by hand, soaked, dyed and woven into the mats that are slept on, sat on, unrolled for guests, folded under an arm on the way to the market. At its finest the weave is worked wet, thread by thread, until a mat folds like cloth.</p>
       <p>It is a household craft there, not a rarity. Artham works alongside those weavers to carry it into the everyday. <strong>We have changed only what it is asked to hold.</strong></p>
     </div>
@@ -153,7 +154,7 @@
     <ol class="process__steps">
       <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 56h44M20 56C20 40 16 26 10 12M30 56c0-18 2-32 6-46M40 56c0-14 6-26 14-34M26 56c-2-10-6-18-12-24"/></svg><b>01</b><h4>Grown</h4><p>Korai, a slender sedge, grows thick along the banks of the Thamirabarani.</p></li>
       <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6v52M32 22l-12 36M32 22l12 36M32 34l-6 24M32 34l6 24"/></svg><b>02</b><h4>Split by hand</h4><p>Each stem is split into fine strands. The finer the split, the finer the mat.</p></li>
-      <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 30h44l-4 24H14zM18 30c2-8 8-12 14-12s12 4 14 12M24 18c-2-4 0-8 4-10M36 16c2-4 6-6 10-4"/></svg><b>03</b><h4>Soaked &amp; dyed</h4><p>Softened in water, dyed in batches — wine, black, the jewelled colours kept back for festivals.</p></li>
+      <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 30h44l-4 24H14zM18 30c2-8 8-12 14-12s12 4 14 12M24 18c-2-4 0-8 4-10M36 16c2-4 6-6 10-4"/></svg><b>03</b><h4>Soaked &amp; dyed</h4><p>Softened in water, dyed in batches: wine, black, and the jewelled colours kept back for festivals.</p></li>
       <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 12h48M8 52h48M14 12v40M22 12v40M30 12v40M38 12v40M46 12v40M54 12v40M10 24h46M10 32h46M10 40h46"/></svg><b>04</b><h4>Woven wet</h4><p>On the loom, worked wet, thread by thread, the weft beaten close until the mat folds like cloth.</p></li>
       <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 40c12-8 36-8 48 0M14 34l4 10M24 31l2 10M34 30l0 10M44 31l-2 10M52 34l-4 10M20 14l24 12M44 14L20 26"/></svg><b>05</b><h4>Cut &amp; stitched</h4><p>The finished paai is cut, framed in leather and stitched with a hand-finished edge.</p></li>
       <li class="reveal"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 26h32l4 30H12zM24 26c0-8 4-14 8-14s8 6 8 14"/><circle cx="32" cy="41" r="7"/></svg><b>06</b><h4>Carried</h4><p>Out of the house, onto the shoulder, into the day. Made in limited number.</p></li>
@@ -162,11 +163,11 @@
 
   <figure class="loom reveal">
     <img src="images/place/loom.jpg" alt="Korai strands beside a loom, a wine and natural striped paai half woven on the warp" loading="lazy">
-    <figcaption>On the loom — the Veyil weave, half made.</figcaption>
+    <figcaption>On the loom: the Veyil weave, half made.</figcaption>
   </figure>
 </section>
 
-<!-- ═══ NAAL — a day ══════════════════════════════════════════ -->
+<!-- ═══ NAAL · a day ══════════════════════════════════════════ -->
 <section class="day" id="naal" data-bg="#F5EAD6" data-fg="#2B1913" data-time="600" data-tamil="காலை" data-name="morning">
   <div class="day__grid">
     <div class="day__text reveal">
@@ -193,7 +194,8 @@
 <!-- ═══ I · VEYIL ═════════════════════════════════════════════ -->
 <section class="chapter chapter--veyil" id="veyil" data-bg="#F6E2B3" data-fg="#3A1D10" data-time="720" data-tamil="வெயில்" data-name="sunlight">
   <div class="scene scene--veyil">
-    <img class="scene__photo" data-concept="veyil" alt="">
+    <img class="scene__photo" src="images/concepts/veyil-street.jpg" alt="Morning sun breaking through trees onto an old street gate" loading="lazy">
+    <figure class="scene__inset" aria-hidden="false"><img src="images/concepts/veyil-kolam.jpg" alt="A woman drawing a kolam in the low gold light" loading="lazy"></figure>
     <div class="scene__art" aria-hidden="true"><div class="sun"></div><div class="shafts"></div><div class="motes"></div></div>
     <div class="scene__text">
       <p class="eyebrow">Chapter I &nbsp;·&nbsp; Midday &nbsp;·&nbsp; 12:00</p>
@@ -206,15 +208,15 @@
   <div class="story">
     <figure class="postcard reveal"><img src="images/story/veyil.jpg" alt="Illustration of a green katta pai hanging on a hook by the front door" loading="lazy"></figure>
     <div class="story__text reveal">
-      <p class="lead">Every household keeps a katta pai by the door — the one grabbed without thinking on the way out for a market run in the afternoon sun.</p>
+      <p class="lead">Every household keeps a katta pai by the door, the one grabbed without thinking on the way out for a market run in the afternoon sun.</p>
       <p>Folded under an arm, bright enough to be picked out from the end of the street. Veyil keeps that brightness, and that way of being carried: <em>a circle cut clean through leather, the weave burning through the opening.</em></p>
     </div>
   </div>
 
   <article class="product" data-id="veyil">
     <div class="product__media reveal reveal--circle">
-      <img src="images/bags/veyil.jpg" alt="Veyil — a tan leather hand bag with a circle cut through it, wine and natural striped korai weave inside, held by the circle" loading="lazy">
-      <button class="spot" style="--x:52%;--y:27%" type="button" aria-expanded="false">Carried by the circle<span>The handle is the cut itself — a circle taken clean out of the leather, the way a katta pai is carried by its fold.</span></button>
+      <img src="images/bags/veyil.jpg" alt="Veyil, a tan leather hand bag with a circle cut through it, wine and natural striped korai weave inside, held by the circle" loading="lazy">
+      <button class="spot" style="--x:52%;--y:27%" type="button" aria-expanded="false">Carried by the circle<span>The handle is the cut itself: a circle taken clean out of the leather, the way a katta pai is carried by its fold.</span></button>
       <button class="spot" style="--x:48%;--y:56%" type="button" aria-expanded="false">Korai weave<span>Wine and natural stripes, hand-woven on the loom in Pathamadai.</span></button>
       <button class="spot" style="--x:28%;--y:87%" type="button" aria-expanded="false">Hand-stitched edge<span>Every edge turned and stitched by hand, in thread matched to the leather.</span></button>
       <button class="spot" style="--x:81%;--y:81%" type="button" aria-expanded="false">The mark<span>The Artham monogram in gold tone, set low on the corner.</span></button>
@@ -241,7 +243,7 @@
     <header class="pair__head reveal"><p class="eyebrow">Ways to wear it</p><h3 class="h3">Veyil, three ways</h3></header>
     <ul class="pair__list">
       <li class="look reveal" style="--a:#F4F0E8;--b:#D8C7A6;--c:#B86A35"><div class="look__board"><i></i><i></i><img src="images/weave/veyil.jpg" alt=""></div><h4>The market run</h4><p>A crisp white linen shirt, wide ecru trousers, kolhapuris. Let the bag be the only colour.</p></li>
-      <li class="look reveal" style="--a:#8C1C22;--b:#F2E6D8;--c:#C9A24C"><div class="look__board"><i></i><i></i><img src="images/weave/veyil.jpg" alt=""></div><h4>Sunday lunch</h4><p>A wine-and-white checked cotton dress, gold hoops, hair up. Stripe meets check — it was always a paai.</p></li>
+      <li class="look reveal" style="--a:#8C1C22;--b:#F2E6D8;--c:#C9A24C"><div class="look__board"><i></i><i></i><img src="images/weave/veyil.jpg" alt=""></div><h4>Sunday lunch</h4><p>A wine-and-white checked cotton dress, gold hoops, hair up. Stripe meets check. It was always a paai.</p></li>
       <li class="look reveal" style="--a:#E2B23C;--b:#8C1C22;--c:#F4F0E8"><div class="look__board"><i></i><i></i><img src="images/weave/veyil.jpg" alt=""></div><h4>Handloom day</h4><p>A mustard cotton saree with a red border, jasmine in the hair. Veyil was made for that kind of yellow.</p></li>
     </ul>
   </div>
@@ -250,7 +252,8 @@
 <!-- ═══ II · NIZHAL ═══════════════════════════════════════════ -->
 <section class="chapter chapter--nizhal" id="nizhal" data-bg="#E7D8C5" data-fg="#2B1913" data-time="930" data-tamil="நிழல்" data-name="shade">
   <div class="scene scene--nizhal">
-    <img class="scene__photo" data-concept="nizhal" alt="">
+    <img class="scene__photo" src="images/concepts/nizhal-room.jpg" alt="Late sun casting the shadow of a window across a quiet room" loading="lazy">
+    <figure class="scene__inset" aria-hidden="false"><img src="images/concepts/nizhal-cane.jpg" alt="Leaf shadows over two cane chairs" loading="lazy"></figure>
     <div class="scene__art" aria-hidden="true">
       <div class="room"><div class="room__wall"></div><div class="room__floor"><div class="room__light" id="grillLight"></div></div></div>
     </div>
@@ -266,21 +269,21 @@
     <figure class="postcard reveal"><img src="images/story/nizhal.jpg" alt="Illustration of an open door onto a red-oxide tiled floor, someone reading in the shade" loading="lazy"></figure>
     <div class="story__text reveal">
       <p class="lead">By afternoon the light has moved. It comes through the grill and lies across the tiled floor in squares, and the house goes quiet behind it.</p>
-      <p>Too warm to be outside, quiet enough that the tiles hold the light in patches. Nizhal is that pause — <em>it takes the chequer onto the shoulder: long, low, and unhurried, the way the hour is.</em></p>
+      <p>Too warm to be outside, quiet enough that the tiles hold the light in patches. Nizhal is that pause. <em>It takes the chequer onto the shoulder: long, low, and unhurried, the way the hour is.</em></p>
     </div>
   </div>
 
   <article class="product product--flip" data-id="nizhal">
     <div class="product__media reveal reveal--tiles">
-      <img src="images/bags/nizhal.jpg" alt="Nizhal — a long, low shoulder baguette in a rust, indigo and ivory chequer weave, on an arched tan leather strap" loading="lazy">
+      <img src="images/bags/nizhal.jpg" alt="Nizhal, a long, low shoulder baguette in a rust, indigo and ivory chequer weave, on an arched tan leather strap" loading="lazy">
       <button class="spot" style="--x:55%;--y:12%" type="button" aria-expanded="false">The arch<span>One long sweep of tan leather, sized to sit close under the arm.</span></button>
-      <button class="spot" style="--x:58%;--y:76%" type="button" aria-expanded="false">Chequer weave<span>Rust, indigo and ivory, woven in squares — the light through the grill, kept.</span></button>
+      <button class="spot" style="--x:58%;--y:76%" type="button" aria-expanded="false">Chequer weave<span>Rust, indigo and ivory, woven in squares. The light through the grill, kept.</span></button>
       <button class="spot" style="--x:16%;--y:64%" type="button" aria-expanded="false">Zip close<span>A full-length gold-tone zip, so the afternoon stays in.</span></button>
     </div>
     <div class="product__info reveal">
       <p class="eyebrow">Shoulder bag &nbsp;·&nbsp; Baguette</p>
       <h3 class="product__name">Nizhal</h3>
-      <p class="product__desc">A long, low baguette in a rust, indigo and ivory chequer, on an arched tan leather strap. Structured, close, unhurried — the shape of an afternoon slowing down.</p>
+      <p class="product__desc">A long, low baguette in a rust, indigo and ivory chequer, on an arched tan leather strap. Structured, close and unhurried: the shape of an afternoon slowing down.</p>
       <dl class="specs">
         <div><dt>Weave</dt><dd><img src="images/weave/nizhal.jpg" alt="" class="swatch">Rust, indigo &amp; ivory chequer</dd></div>
         <div><dt>Leather</dt><dd>Tan, hand-finished</dd></div>
@@ -306,9 +309,9 @@
 </section>
 
 <!-- ═══ III · MALAI ═══════════════════════════════════════════ -->
-<section class="chapter chapter--malai" id="malai" data-bg="#3A2724" data-fg="#F3E4CF" data-time="1110" data-tamil="மாலை" data-name="evening">
+<section class="chapter chapter--malai" id="malai" data-bg="#3B302A" data-fg="#F2E6D4" data-time="1110" data-tamil="மாலை" data-name="evening">
   <div class="scene scene--malai">
-    <img class="scene__photo" data-concept="malai" alt="">
+    <img class="scene__photo" src="images/concepts/malai-paai.jpg" alt="Three women in silk saris playing a game on a korai paai spread on the grass, tea set beside them" loading="lazy">
     <div class="scene__art" aria-hidden="true">
       <div class="dusk"></div><div class="stars"></div>
       <div class="lamp"><i></i></div>
@@ -325,22 +328,22 @@
   <div class="story">
     <figure class="postcard reveal"><img src="images/story/malai.jpg" alt="Illustration of a striped paai laid on the floor, hands playing cards and dice around cups of coffee" loading="lazy"></figure>
     <div class="story__text reveal">
-      <p class="lead">A paai, laid out flat, holds an entire gathering — food and conversation, cards and coffee, people settling in around it.</p>
+      <p class="lead">A paai, laid out flat, holds an entire gathering: food and conversation, cards and coffee, people settling in around it.</p>
       <p>Malai is the mat unrolled when people come: black and beige, the paai in its oldest colouring, the one nobody thinks to call a pattern. <em>It holds what a day asks you to carry, and it does not wait for evening to do it.</em></p>
     </div>
   </div>
 
   <article class="product" data-id="malai">
     <div class="product__media product__media--white reveal reveal--stripes">
-      <img src="images/bags/malai.jpg" alt="Malai — a wide domed tote in beige and black striped korai, framed in black leather with buckled straps" loading="lazy">
-      <button class="spot" style="--x:56%;--y:52%" type="button" aria-expanded="false">The oldest colouring<span>Black and beige — the paai as it was in every house, before anyone called it a pattern.</span></button>
+      <img src="images/bags/malai.jpg" alt="Malai, a wide domed tote in beige and black striped korai, framed in black leather with buckled straps" loading="lazy">
+      <button class="spot" style="--x:56%;--y:52%" type="button" aria-expanded="false">The oldest colouring<span>Black and beige, the paai as it was in every house, before anyone called it a pattern.</span></button>
       <button class="spot" style="--x:30%;--y:32%" type="button" aria-expanded="false">Buckled straps<span>Adjustable, so it goes over the shoulder or into the hand.</span></button>
       <button class="spot" style="--x:74%;--y:91%" type="button" aria-expanded="false">Leather base<span>A black leather floor for everything a day puts down in it.</span></button>
     </div>
     <div class="product__info reveal">
       <p class="eyebrow">Tote &nbsp;·&nbsp; Domed</p>
       <h3 class="product__name">Malai</h3>
-      <p class="product__desc">A wide, unfussy tote in beige and black stripes, framed in black leather with buckled, adjustable straps. Made to hold whatever a day brings into it. Not only evenings — just everything.</p>
+      <p class="product__desc">A wide, unfussy tote in beige and black stripes, framed in black leather with buckled, adjustable straps. Made to hold whatever a day brings into it. Not only evenings. Just everything.</p>
       <dl class="specs">
         <div><dt>Weave</dt><dd><img src="images/weave/malai.jpg" alt="" class="swatch">Beige &amp; black stripe</dd></div>
         <div><dt>Leather</dt><dd>Black, hand-finished</dd></div>
@@ -366,9 +369,10 @@
 </section>
 
 <!-- ═══ IV · VIZHA ════════════════════════════════════════════ -->
-<section class="chapter chapter--vizha" id="vizha" data-bg="#22090F" data-fg="#F4E3D6" data-time="1260" data-tamil="விழா" data-name="festival">
+<section class="chapter chapter--vizha" id="vizha" data-bg="#2A2026" data-fg="#F2E6DA" data-time="1260" data-tamil="விழா" data-name="festival">
   <div class="scene scene--vizha">
-    <img class="scene__photo" data-concept="vizha" alt="">
+    <img class="scene__photo" src="images/concepts/vizha-saree.jpg" alt="Two women in green and purple silk saris, one tucking flowers into the other's hair" loading="lazy">
+    <figure class="scene__inset" aria-hidden="false"><img src="images/concepts/vizha-bangles.jpg" alt="Hands in glass bangles, red, green and blue, holding ivory silk pleats" loading="lazy"></figure>
     <div class="scene__art" aria-hidden="true"><div class="lights" id="lights"></div><div class="kolam"></div></div>
     <div class="scene__text">
       <p class="eyebrow">Chapter IV &nbsp;·&nbsp; Festival night &nbsp;·&nbsp; 21:00</p>
@@ -382,14 +386,14 @@
     <figure class="postcard reveal"><img src="images/story/vizha.jpg" alt="Illustration of a festival vendor's pinwheels and a bunch of bright balloons" loading="lazy"></figure>
     <div class="story__text reveal">
       <p class="lead">Some colours are kept back. They are not for the floor or the afternoon; they come out of the cupboard for weddings, for temple nights, for the days a house fills up.</p>
-      <p>Some nights aren't ordinary, and the bag shouldn't be either. Vizha is woven in those colours — <em>jewelled greens, magentas, wine</em> — in two pieces made to be held rather than worn.</p>
+      <p>Some nights aren't ordinary, and the bag shouldn't be either. Vizha is woven in those colours, <em>jewelled greens, magentas and wine</em>, in two pieces made to be held rather than worn.</p>
     </div>
   </div>
 
   <article class="product" data-id="vizha-half-moon">
     <div class="product__media reveal reveal--moon">
-      <img src="images/bags/vizha-half-moon.jpg" alt="Vizha Half Moon — a semicircle clutch in magenta and bottle-green korai stripes, with a brown leather cut-out handle" loading="lazy">
-      <button class="spot" style="--x:53%;--y:53%" type="button" aria-expanded="false">Carried by the fold<span>The weave rises on both sides of a leather handle and meets at the top — a mat folded once.</span></button>
+      <img src="images/bags/vizha-half-moon.jpg" alt="Vizha Half Moon, a semicircle clutch in magenta and bottle-green korai stripes, with a brown leather cut-out handle" loading="lazy">
+      <button class="spot" style="--x:53%;--y:53%" type="button" aria-expanded="false">Carried by the fold<span>The weave rises on both sides of a leather handle and meets at the top, like a mat folded once.</span></button>
       <button class="spot" style="--x:24%;--y:70%" type="button" aria-expanded="false">Jewel stripes<span>Magenta and bottle green, the colours kept back for festivals.</span></button>
       <button class="spot" style="--x:92%;--y:72%" type="button" aria-expanded="false">Piped edge<span>Leather piping follows the curve all the way round.</span></button>
     </div>
@@ -413,15 +417,15 @@
 
   <article class="product product--flip" data-id="vizha-long-clutch">
     <div class="product__media reveal reveal--slide">
-      <img src="images/bags/vizha-long-clutch.jpg" alt="Vizha Long Clutch — a long wine-leather clutch with a top handle, its flap and body in fine wine-toned korai" loading="lazy">
-      <button class="spot" style="--x:44%;--y:53%" type="button" aria-expanded="false">One length, unbroken<span>A single length of paai runs across the back, over the flap and down the front — folded rather than joined.</span></button>
+      <img src="images/bags/vizha-long-clutch.jpg" alt="Vizha Long Clutch, a long wine-leather clutch with a top handle, its flap and body in fine wine-toned korai" loading="lazy">
+      <button class="spot" style="--x:44%;--y:53%" type="button" aria-expanded="false">One length, unbroken<span>A single length of paai runs across the back, over the flap and down the front, folded rather than joined.</span></button>
       <button class="spot" style="--x:47%;--y:43%" type="button" aria-expanded="false">Top handle<span>A slim loop of wine leather, for holding rather than wearing.</span></button>
       <button class="spot" style="--x:25%;--y:62%" type="button" aria-expanded="false">Wine piping<span>Hand-finished leather edges every fold.</span></button>
     </div>
     <div class="product__info reveal">
       <p class="eyebrow">Clutch &nbsp;·&nbsp; Long</p>
       <h3 class="product__name">Vizha <em>Long Clutch</em></h3>
-      <p class="product__desc">One length of paai runs unbroken across the back, over the flap and down the front — a single piece, folded rather than joined. Framed in wine leather, for temple nights and long weddings.</p>
+      <p class="product__desc">One length of paai runs unbroken across the back, over the flap and down the front. A single piece, folded rather than joined. Framed in wine leather, for temple nights and long weddings.</p>
       <dl class="specs">
         <div><dt>Weave</dt><dd><img src="images/weave/vizha-long-clutch.jpg" alt="" class="swatch">Wine-toned korai</dd></div>
         <div><dt>Leather</dt><dd>Wine, hand-finished</dd></div>
@@ -451,7 +455,7 @@
   <header class="craft__head reveal">
     <p class="eyebrow">Made by hand</p>
     <h2 class="display">No two quite alike.</h2>
-    <p class="lead">The weave carries the hand that made it — a slightly different tension, a dye batch a shade warmer. Those aren't flaws. They're how you know a person was there.</p>
+    <p class="lead">The weave carries the hand that made it: a slightly different tension, a dye batch a shade warmer. Those aren't flaws. They're how you know a person was there.</p>
   </header>
   <ul class="craft__list">
     <li class="reveal"><span class="craft__n">Korai</span><p>Grass from the banks of the Thamirabarani, split, soaked and dyed by hand.</p></li>
@@ -464,7 +468,7 @@
     <ul>
       <li>Keep it dry; if it meets the rain, pat it down and let it dry in the shade, never the sun.</li>
       <li>Brush the weave with a soft dry cloth. Korai softens and glows with use.</li>
-      <li>Store it filled with paper, in its cloth bag — rolled out for the day, tucked away until the next time.</li>
+      <li>Store it filled with paper, in its cloth bag. Rolled out for the day, tucked away until the next time.</li>
     </ul>
   </aside>
 </section>
@@ -473,16 +477,16 @@
 <section class="founders" id="founders" data-bg="#EADFD0" data-fg="#2B1913" data-time="1350" data-tamil="இரவு" data-name="night">
   <figure class="founders__photo reveal">
     <div class="airmail"><img src="images/founders/prashantini-dhiraj.jpg" alt="Prashantini and Dhiraj, smiling, sitting on a mosaic-tiled bench above a city by the sea" loading="lazy"></div>
-    <figcaption>Prashantini &amp; Dhiraj — always, somehow, looking at pattern.</figcaption>
+    <figcaption>Prashantini &amp; Dhiraj, always somehow looking at pattern.</figcaption>
     <span class="stamp" aria-hidden="true"><svg><use href="#mark"/></svg></span>
   </figure>
   <div class="founders__text reveal">
     <p class="eyebrow">The founders</p>
     <h2 class="display">Prashantini <em>&amp;</em> Dhiraj</h2>
     <p class="lead">Artham is two people and one habit of seeing.</p>
-    <p>We started on paper, drawing patterns from whatever was already in view — the tile underfoot, the shadow of a grill, the grain of a door. One of us reads pattern for a living. The other grew up a short road from the looms, where a mat is simply a mat.</p>
-    <p>Naal is our first collection, and the most personal thing we know how to make: the paai from every house we grew up in, carried out of the door and into the day. We work alongside the weavers of Pathamadai, and we make each bag in limited number — slowly, and by hand.</p>
-    <p class="sign">— Prashantini &amp; Dhiraj</p>
+    <p>We started on paper, drawing patterns from whatever was already in view: the tile underfoot, the shadow of a grill, the grain of a door. One of us reads pattern for a living. The other grew up a short road from the looms, where a mat is simply a mat.</p>
+    <p>Naal is our first collection, and the most personal thing we know how to make: the paai from every house we grew up in, carried out of the door and into the day. We work alongside the weavers of Pathamadai, and we make each bag in limited number, slowly and by hand.</p>
+    <p class="sign">Prashantini &amp; Dhiraj</p>
   </div>
 </section>
 
@@ -490,21 +494,21 @@
 <section class="cards" id="cards" data-bg="#EADFD0" data-fg="#2B1913" data-time="1365" data-tamil="இரவு" data-name="night">
   <header class="cards__head reveal"><p class="eyebrow">The story cards</p><h2 class="h2">Five postcards, one day.</h2></header>
   <div class="cards__fan" id="fan">
-    <button type="button" style="--i:0"><img src="images/story/card-pathamadai.jpg" alt="Story card — Collection One: the weavers of Pathamadai" loading="lazy"></button>
-    <button type="button" style="--i:1"><img src="images/story/card-veyil.jpg" alt="Story card — Veyil, sunlight" loading="lazy"></button>
-    <button type="button" style="--i:2"><img src="images/story/card-nizhal.jpg" alt="Story card — Nizhal, shade" loading="lazy"></button>
-    <button type="button" style="--i:3"><img src="images/story/card-malai.jpg" alt="Story card — Malai, evening" loading="lazy"></button>
-    <button type="button" style="--i:4"><img src="images/story/card-vizha.jpg" alt="Story card — Vizha, festival" loading="lazy"></button>
+    <button type="button" style="--i:0"><img src="images/story/card-pathamadai.jpg" alt="Story card: Collection One: the weavers of Pathamadai" loading="lazy"></button>
+    <button type="button" style="--i:1"><img src="images/story/card-veyil.jpg" alt="Story card: Veyil, sunlight" loading="lazy"></button>
+    <button type="button" style="--i:2"><img src="images/story/card-nizhal.jpg" alt="Story card: Nizhal, shade" loading="lazy"></button>
+    <button type="button" style="--i:3"><img src="images/story/card-malai.jpg" alt="Story card: Malai, evening" loading="lazy"></button>
+    <button type="button" style="--i:4"><img src="images/story/card-vizha.jpg" alt="Story card: Vizha, festival" loading="lazy"></button>
   </div>
   <p class="cards__hint">Tap a card to read it.</p>
 </section>
 
 <!-- ═══ ORDER ═════════════════════════════════════════════════ -->
-<section class="order" id="order" data-bg="#6E1214" data-fg="#F4E9DA" data-time="1380" data-tamil="இரவு" data-name="night">
+<section class="order" id="order" data-bg="#3A2C24" data-fg="#F2E8DA" data-time="1380" data-tamil="இரவு" data-name="night">
   <header class="order__head reveal">
     <p class="eyebrow eyebrow--gold">Collection One · Naal</p>
     <h2 class="display display--light">Choose your hour.</h2>
-    <p class="lead">Each Naal bag is made in limited number. Pick the ones that are yours — we'll reply on WhatsApp with availability, price and delivery.</p>
+    <p class="lead">Each Naal bag is made in limited number. Pick the ones that are yours and we'll reply on WhatsApp with availability, price and delivery.</p>
   </header>
   <ul class="order__grid" id="orderGrid"></ul>
   <div class="order__cta reveal">
@@ -527,7 +531,7 @@
   </div>
   <div class="foot__col">
     <p class="eyebrow eyebrow--gold">Say hello</p>
-    <p><a id="footWa" href="#">WhatsApp</a><br><a id="footIg" href="#" target="_blank" rel="noopener">Instagram</a><br><a href="../">Artham — little memories</a></p>
+    <p><a id="footWa" href="#">WhatsApp</a><br><a id="footIg" href="#" target="_blank" rel="noopener">Instagram</a><br><a href="../">Artham · little memories</a></p>
   </div>
   <p class="foot__end">Veyil · Nizhal · Malai · Vizha</p>
 </footer>
@@ -540,7 +544,7 @@
     <button class="drawer__close" id="drawerClose" type="button" aria-label="Close">×</button>
   </header>
   <ul class="drawer__list" id="drawerList"></ul>
-  <p class="drawer__empty" id="drawerEmpty">Nothing here yet. Every hour of the day has a bag — <a href="#naal">find yours</a>.</p>
+  <p class="drawer__empty" id="drawerEmpty">Nothing here yet. Every hour of the day has a bag. <a href="#naal">Find yours</a>.</p>
   <footer class="drawer__foot">
     <label class="field">Your name<input id="ordName" autocomplete="name" placeholder="So we know who to thank"></label>
     <label class="field">City<input id="ordCity" autocomplete="address-level2" placeholder="Where it's going"></label>

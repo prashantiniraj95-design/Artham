@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NAAL by ARTHAM — the page behaviour.
+   NAAL by ARTHAM · the page behaviour.
 
    ▼ THE ONLY PART YOU SHOULD NEED TO EDIT ▼
    Prices: write them like "₹ 6,500". Leave "" and the page simply says
@@ -51,9 +51,8 @@ var NAAL = {
     return { el: el, bg: hex(el.dataset.bg), fg: hex(el.dataset.fg), time: +el.dataset.time, ta: el.dataset.tamil, name: el.dataset.name };
   });
   var root = document.documentElement.style;
-  var sheet = $("#sheet"), sheetTime = $("#sheetTime"), sheetName = $("#sheetName");
+  var sheet = $("#sheet");
   var dialSun = $("#dialSun"), arcPath = $("#arcPath"), arcLen = arcPath ? arcPath.getTotalLength() : 0;
-  var lastLabel = "";
   var tops = [];
   function measure() { tops = tones.map(function (t) { return t.el.getBoundingClientRect().top + window.scrollY; }); }
   function arcAt(minutes) { var f = Math.max(0, Math.min(1, (minutes - 360) / (1320 - 360))); return arcPath.getPointAtLength(f * arcLen); }
@@ -63,7 +62,34 @@ var NAAL = {
     a.style.setProperty("--y", (pt.y / 260 * 100).toFixed(2) + "%");
   });
 
-  function fmt(min) { min = Math.max(0, Math.min(1439, Math.round(min))); var h = Math.floor(min / 60), m = min % 60; return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m; }
+  /* the calendar sheet: whatever today is for the person reading, and which
+     hour of Naal it is for them right now */
+  var MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  var DAYS_TA = ["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"];
+  var DAYS_EN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  function hourOfNaal(m) {
+    if (m >= 600 && m < 840) return ["Veyil hour", "#veyil"];
+    if (m >= 840 && m < 1050) return ["Nizhal hour", "#nizhal"];
+    if (m >= 1050 && m < 1200) return ["Malai hour", "#malai"];
+    if (m >= 1200 && m < 1380) return ["Vizha hour", "#vizha"];
+    if (m >= 300 && m < 600) return ["Morning", "#naal"];
+    return ["Night", "#vizha"];
+  }
+  function today() {
+    var d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+    var h12 = d.getHours() % 12 || 12, mm = d.getMinutes();
+    $("#sheetMonth").textContent = MONTHS[d.getMonth()];
+    $("#sheetYear").textContent = d.getFullYear();
+    $("#sheetDate").textContent = d.getDate();
+    $("#sheetDay").textContent = DAYS_TA[d.getDay()];
+    var time = h12 + ":" + (mm < 10 ? "0" : "") + mm + (d.getHours() < 12 ? " am" : " pm");
+    $("#sheetTime").textContent = time;
+    var hn = hourOfNaal(m);
+    $("#sheetHour").textContent = hn[0];
+    sheet.href = hn[1];
+    sheet.setAttribute("aria-label", "Today, " + DAYS_EN[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()] + ", " + time + ". It is " + hn[0] + ".");
+  }
+  today(); setInterval(today, 20000);
 
   function tone() {
     var vh = window.innerHeight, y = window.scrollY + vh * 0.5, i = 0;
@@ -81,13 +107,6 @@ var NAAL = {
     var span = next ? tops[i + 1] - tops[i] : 1;
     var prog = next ? Math.max(0, Math.min(1, (y - tops[i]) / span)) : 0;
     var minutes = cur.time + (next ? (next.time - cur.time) * prog : 0);
-    sheetTime.textContent = fmt(minutes);
-    var label = cur.ta + " · " + cur.name;
-    if (label !== lastLabel) {
-      sheetName.textContent = label;
-      if (lastLabel && !reduce) { sheet.classList.remove("flip"); void sheet.offsetWidth; sheet.classList.add("flip"); }
-      lastLabel = label;
-    }
     sheet.classList.toggle("is-on", window.scrollY > vh * 0.6);
 
     // the sun on the dial: 06:00 at the left horizon, 22:00 below the right
@@ -112,7 +131,7 @@ var NAAL = {
   function unroll() {
     var r = paai.getBoundingClientRect(), vh = window.innerHeight;
     var total = r.height - vh;
-    var p = Math.max(0, Math.min(1, -r.top / (total * 0.82)));
+    var p = Math.max(0, Math.min(1, -r.top / (total * 0.7)));
     mat.style.setProperty("--p", p.toFixed(4));
     var shown = -1;
     mems.forEach(function (li, i) {
@@ -184,12 +203,11 @@ var NAAL = {
   });
   document.addEventListener("click", function () { $$(".spot[aria-expanded=true]").forEach(function (o) { o.setAttribute("aria-expanded", "false"); }); });
 
-  /* ── concept photographs: drop a file in images/concepts/ and it appears ── */
-  $$(".scene__photo[data-concept]").forEach(function (img) {
-    var name = img.getAttribute("data-concept"), tries = [".jpg", ".webp"], k = 0;
-    img.addEventListener("load", function () { img.closest(".scene").classList.add("has-photo"); });
-    img.addEventListener("error", function () { if (++k < tries.length) img.src = "images/concepts/" + name + tries[k]; else img.remove(); });
-    img.src = "images/concepts/" + name + tries[0];
+  /* ── chapter photographs ──────────────────────────────── */
+  $$(".scene__photo").forEach(function (img) {
+    var mark = function () { img.closest(".scene").classList.add("has-photo"); };
+    if (img.complete && img.naturalWidth) mark(); else img.addEventListener("load", mark);
+    img.addEventListener("error", function () { img.remove(); });
   });
 
   /* ── festival lights for Vizha ─────────────────────────── */
@@ -210,14 +228,14 @@ var NAAL = {
     var ctx = cv.getContext("2d"), dpr = Math.min(2, window.devicePixelRatio || 1), W, H, row = 0, pat = 0, cell = 7, rowH = 5;
     // four weaves of the day, as functions of (column, row) → colour
     var weaves = [
-      function (c, r) { var b = Math.floor(r / 26) % 3; return b === 1 ? "#E6CF9E" : "#9C1F2A"; },                               // Veyil
+      function (c, r) { var b = Math.floor(r / 26) % 3; return b === 1 ? "#E6CF9E" : "#8A5A3C"; },                               // Veyil
       function (c, r) { var q = (Math.floor(c / 3) + Math.floor(r / 5)) % 2; return q ? ((Math.floor(c / 3) % 2) ? "#C2582F" : "#24345A") : "#EFE6D6"; }, // Nizhal
       function (c) { return (Math.floor(c / 4) % 2) ? "#161210" : "#D9C39A"; },                                                      // Malai
       function (c, r) { var s = Math.floor(c / 3) % 2; return s ? "#B1235E" : ((r % 4 < 2) ? "#1D6A4F" : "#5A1427"); }                // Vizha
     ];
     function size() {
       W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.fillStyle = "#5A0E10"; ctx.fillRect(0, 0, W, H); row = 0;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.fillStyle = "#2E231D"; ctx.fillRect(0, 0, W, H); row = 0;
     }
     function weaveRow() {
       var y = H - rowH;
@@ -280,7 +298,7 @@ var NAAL = {
 
   function message() {
     var lines = ["Hello Artham! I'd like to order from Naal:", ""];
-    picked.forEach(function (id) { var b = byId[id]; lines.push("• " + b.name + " — " + b.form + (b.price ? " (" + b.price + ")" : "")); });
+    picked.forEach(function (id) { var b = byId[id]; lines.push("• " + b.name + ": " + b.form + (b.price ? " (" + b.price + ")" : "")); });
     lines.push("");
     if (name.value.trim()) lines.push("Name: " + name.value.trim());
     if (city.value.trim()) lines.push("City: " + city.value.trim());
