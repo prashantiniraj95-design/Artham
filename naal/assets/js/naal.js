@@ -222,49 +222,68 @@ var NAAL = {
     }
   }
 
-  /* ── the loom in the hero: a paai being woven, row by row ── */
+  /* ── the loom in the hero: a korai paai, woven at the fell, row by row ──
+     The warp is cotton, stretched the length of the loom. Each new strand of
+     korai is laid across it at the fell and the cloth is taken up below, so the
+     mat grows up the screen and then keeps moving down onto the beam. The
+     stripes run the length of the mat, as they do on a Pathamadai paai. */
   var cv = $("#loom");
   if (cv && cv.getContext) {
-    var ctx = cv.getContext("2d"), dpr = Math.min(2, window.devicePixelRatio || 1), W, H, row = 0, pat = 0, cell = 7, rowH = 5;
-    // four weaves of the day, as functions of (column, row) → colour
-    var weaves = [
-      function (c, r) { var b = Math.floor(r / 26) % 3; return b === 1 ? "#E6CF9E" : "#8A5A3C"; },                               // Veyil
-      function (c, r) { var q = (Math.floor(c / 3) + Math.floor(r / 5)) % 2; return q ? ((Math.floor(c / 3) % 2) ? "#C2582F" : "#24345A") : "#EFE6D6"; }, // Nizhal
-      function (c) { return (Math.floor(c / 4) % 2) ? "#161210" : "#D9C39A"; },                                                      // Malai
-      function (c, r) { var s = Math.floor(c / 3) % 2; return s ? "#B1235E" : ((r % 4 < 2) ? "#1D6A4F" : "#5A1427"); }                // Vizha
-    ];
+    var ctx = cv.getContext("2d"), dpr = Math.min(2, window.devicePixelRatio || 1);
+    var W, H, fell, row = 0, warp = 6, rowH = 4, top;
+    var natural = ["#D3CA95", "#CFC58C", "#DAD2A3", "#C9BF84", "#D6CE9B", "#CCC38F"];
+    function band(x) {
+      var f = x / W;
+      if (f > .36 && f < .43 || f > .47 && f < .54) return "#4A2B8C";
+      if (f >= .445 && f <= .455) return "#B5482B";
+      if (f > .1 && f < .125 || f > .835 && f < .86) return "#4A2B8C";
+      return null;
+    }
+    function shade(hex, k) {
+      var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+      return "rgb(" + Math.round(r * k) + "," + Math.round(g * k) + "," + Math.round(b * k) + ")";
+    }
     function size() {
       W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.fillStyle = "#2E231D"; ctx.fillRect(0, 0, W, H); row = 0;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      top = Math.round(H * 0.32);            // where the weaving happens
+      fell = H - Math.round(H * 0.18);       // the cloth starts as a short woven length
+      ctx.fillStyle = "#2E231D"; ctx.fillRect(0, 0, W, H);
+      // the warp, stretched end to end
+      for (var x = warp / 2; x < W; x += warp) { ctx.fillStyle = "rgba(236,226,204,.42)"; ctx.fillRect(x, 0, 1, H); }
+      for (var y = H; y > fell; y -= rowH) weaveAt(y - rowH);
     }
-    function weaveRow() {
-      var y = H - rowH;
-      // shift the cloth up one row, like it's being taken up on the beam
-      ctx.drawImage(cv, 0, rowH * dpr, W * dpr, (H - rowH) * dpr, 0, 0, W, H - rowH);
-      var f = weaves[pat], cols = Math.ceil(W / cell);
-      for (var c = 0; c < cols; c++) {
-        ctx.fillStyle = f(c, row);
-        ctx.fillRect(c * cell, y, cell, rowH);
-        // over-under: every other strand dips under the warp
-        if ((c + row) % 2) { ctx.fillStyle = "rgba(0,0,0,.28)"; ctx.fillRect(c * cell, y, cell, rowH); }
-        else { ctx.fillStyle = "rgba(255,255,255,.10)"; ctx.fillRect(c * cell, y, cell, 1); }
+    function weaveAt(y) {
+      var base = natural[(Math.random() * natural.length) | 0], k = 0.94 + Math.random() * 0.1;
+      for (var c = 0; c * warp < W; c++) {
+        var x = c * warp, col = band(x + warp / 2) || base;
+        ctx.fillStyle = shade(col, k); ctx.fillRect(x, y, warp, rowH);
+        if ((c + row) % 2) {           // the strand dips under the warp here
+          ctx.fillStyle = "rgba(40,30,10,.22)"; ctx.fillRect(x, y, warp, rowH);
+          ctx.fillStyle = "rgba(250,246,232,.55)"; ctx.fillRect(x + warp / 2, y, 1, rowH);
+        } else {
+          ctx.fillStyle = "rgba(255,255,240,.18)"; ctx.fillRect(x, y, warp, 1);
+        }
       }
       row++;
-      if (row % 120 === 0) pat = (pat + 1) % weaves.length;
+    }
+    function step() {
+      if (fell > top) { fell -= rowH; weaveAt(fell); return; }
+      // take up: the woven cloth moves down onto the beam, a new strand at the fell
+      ctx.drawImage(cv, 0, fell * dpr, W * dpr, (H - fell - rowH) * dpr, 0, fell + rowH, W, H - fell - rowH);
+      weaveAt(fell);
     }
     size();
     window.addEventListener("resize", size);
-    if (reduce) { for (var k = 0; k < Math.ceil(H / rowH); k++) weaveRow(); }
+    if (reduce) { while (fell > top) step(); }
     else {
       var heroVisible = true;
       if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; }).observe(cv);
       var last = 0;
       (function loop(t) {
-        if (heroVisible && t - last > 34) { weaveRow(); last = t; }
+        if (heroVisible && t - last > 45) { step(); last = t; }
         requestAnimationFrame(loop);
       })(0);
-      // fill most of the cloth at once so the hero never opens empty
-      for (var k2 = 0; k2 < Math.ceil(H / rowH) + 2; k2++) weaveRow();
     }
   }
 

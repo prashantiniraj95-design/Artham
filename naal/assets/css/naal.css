@@ -160,7 +160,7 @@ button { font: inherit; color: inherit; }
   padding: 110px var(--gutter) 120px; overflow: hidden; isolation: isolate;
   background: #3A2C24; color: #F4E9DA;
 }
-.hero__loom { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: .32; }
+.hero__loom { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: .6; }
 .hero__grid {
   position: absolute; inset: 0; z-index: -1;
   background:
@@ -188,16 +188,40 @@ button { font: inherit; color: inherit; }
 .paai__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; grid-template-rows: auto 1fr; padding: clamp(90px, 12vh, 130px) var(--gutter) 40px; }
 .paai__head { max-width: 920px; }
 .paai__quote { margin: 0; font-family: var(--display); font-style: italic; font-size: clamp(26px, 3.3vw, 48px); line-height: 1.22; color: var(--wine); }
-.paai__stage { position: relative; align-self: center; height: min(60vh, 560px); margin-top: 2vh; }
+.paai__stage { position: relative; align-self: center; height: min(42vh, 360px); margin-top: 3vh; }
 .mat { position: absolute; inset: 0; }
-.mat { display: flex; align-items: center; justify-content: center; }
-.mat__photo {
-  height: 100%; width: auto; max-width: 100%; object-fit: contain;
-  clip-path: inset(0 calc((1 - var(--p, 0)) * 82%) 0 0);
-  transform: rotate(calc(-3deg + var(--p, 0) * 3deg)) scale(calc(.94 + var(--p, 0) * .06));
-  filter: saturate(.9) drop-shadow(0 30px 30px rgba(60,40,20,.25));
-  -webkit-mask: linear-gradient(90deg, #000 86%, transparent), linear-gradient(0deg, #000 92%, transparent); -webkit-mask-composite: source-in;
-  mask: linear-gradient(90deg, #000 86%, transparent) intersect, linear-gradient(0deg, #000 92%, transparent);
+/* korai paai: natural grass, a purple band with a red heart, orange cloth binding */
+.mat__weave {
+  position: absolute; inset: 0;
+  clip-path: inset(0 calc(100% - var(--p, 0) * 100%) 0 0);
+  border-top: 9px solid #DD7A26; border-bottom: 9px solid #DD7A26;
+  box-shadow: 0 30px 50px -30px rgba(60,40,20,.45);
+  background:
+    /* the weft: one korai strand after another */
+    repeating-linear-gradient(90deg, rgba(255,255,240,.22) 0 1px, rgba(90,80,30,.10) 1px 2px, transparent 2px 4px),
+    repeating-linear-gradient(90deg, transparent 0 37px, rgba(90,80,30,.10) 37px 39px, transparent 39px 83px),
+    /* the cotton warp, showing as fine pale lines along the length */
+    repeating-linear-gradient(0deg, transparent 0 11px, rgba(255,255,255,.35) 11px 12px, transparent 12px 13px),
+    /* the stripes, running the length of the mat */
+    linear-gradient(0deg,
+      transparent 0 10%,
+      #4B2C8F 10% 14%, transparent 14% 52%,
+      #47298A 52% 61%, #E7DDB2 61% 62.5%, #B4472C 62.5% 66%, #E7DDB2 66% 67.5%, #47298A 67.5% 76.5%,
+      transparent 76.5%),
+    linear-gradient(0deg, #CFC690, #D8D0A0 30%, #CBC189 60%, #D6CD9C);
+}
+.mat__roll {
+  position: absolute; top: 0; bottom: 0; width: calc(64px - var(--p, 0) * 26px);
+  left: calc(var(--p, 0) * 100% - (64px - var(--p, 0) * 26px) / 2);
+  border-radius: 999px / 22px;
+  background:
+    linear-gradient(0deg, #DD7A26 0 9px, transparent 9px calc(100% - 9px), #DD7A26 calc(100% - 9px)),
+    linear-gradient(0deg, transparent 0 10%, #3E2479 10% 14%, transparent 14% 52%, #3E2479 52% 61%, #9E3B24 62.5% 66%, #3E2479 67.5% 76.5%, transparent 76.5%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 1px, transparent 1px 4px),
+    linear-gradient(90deg, #8E8550 0%, #D9D1A4 38%, #EEE7C6 52%, #BDB27A 78%, #7C7342 100%);
+  background-blend-mode: normal, multiply, normal, normal;
+  box-shadow: 10px 0 22px -8px rgba(60,40,20,.45);
+  opacity: calc(1 - var(--p, 0) * .85);
 }
 .memories { position: absolute; inset: 0; list-style: none; margin: 0; padding: 0; pointer-events: none; }
 .memories li {
@@ -215,7 +239,7 @@ button { font: inherit; color: inherit; }
 .paai__after em { color: var(--wine); }
 @media (max-width: 760px) {
   .paai { height: 520vh; }
-  .paai__stage { height: 44vh; }
+  .paai__stage { height: 30vh; }
   .memories li { left: 50%; top: 50%; width: min(78vw, 300px); max-width: none; margin: -40px 0 0 calc(min(78vw, 300px) / -2); }
   .memories li.is-on:not(.is-cur) { opacity: 0; }
 }
@@ -247,7 +271,7 @@ button { font: inherit; color: inherit; }
 }
 .postcard img, .airmail img { width: 100%; background: #F3E7D3; }
 .postcard { transform: rotate(-1.4deg); }
-.story--flip .postcard, .place__story .postcard { transform: rotate(1.2deg); }
+
 
 .photo { margin: 0; }
 .photo img { width: 100%; box-shadow: 0 40px 70px -40px rgba(43,25,19,.55); }
@@ -381,11 +405,21 @@ button { font: inherit; color: inherit; }
 
 /* story block (card + words) */
 .story { max-width: var(--max); margin: 14vh auto 0; padding: 0 var(--gutter); display: grid; grid-template-columns: 5fr 6fr; gap: 6vw; align-items: center; }
-.story--flip .postcard { order: 2; }
+.story--flip .sketch { order: 2; }
+.sketch { margin: 0; position: relative; isolation: isolate; }
+.sketch img { width: 100%; position: relative;
+  -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%);
+          mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); }
+/* on the evening and night pages, the drawing sits in a pool of lamplight */
+.chapter--malai .sketch::before, .chapter--vizha .sketch::before {
+  content: ""; position: absolute; inset: -14% -18%; z-index: -1;
+  background: radial-gradient(ellipse closest-side, rgba(242,234,215,.92) 0, rgba(242,234,215,.8) 30%, rgba(242,234,215,.45) 58%, rgba(242,234,215,.14) 80%, rgba(242,234,215,0) 100%);
+  filter: blur(6px);
+}
 .story__text p:not(.lead) { max-width: 560px; }
 .story__text em { color: var(--wine); }
 .chapter--malai .story__text em, .chapter--vizha .story__text em { color: var(--gold-hi); }
-@media (max-width: 860px) { .story { grid-template-columns: 1fr; } .story--flip .postcard { order: 0; } .postcard { max-width: 520px; } }
+@media (max-width: 860px) { .story { grid-template-columns: 1fr; } .story--flip .sketch { order: 0; } .sketch { max-width: 520px; } }
 
 /* product */
 .product { max-width: var(--max); margin: 16vh auto 0; padding: 0 var(--gutter); display: grid; grid-template-columns: 7fr 5fr; gap: 5vw; align-items: center; }
