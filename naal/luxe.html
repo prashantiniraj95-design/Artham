@@ -70,15 +70,32 @@
 <main id="top">
 
 <!-- hero -->
-<section class="hero" data-bg="#221C26" data-fg="#F1EADF" data-time="330">
-  <canvas class="hero__loom" id="loom" aria-hidden="true"></canvas>
-  <div class="hero__veil" aria-hidden="true"></div>
-  <div class="hero__inner">
-    <svg class="hero__mark" aria-hidden="true"><use href="#mark"/></svg>
-    <h1 class="hero__title">Naal</h1>
-    <p class="hero__sub">A day, woven.</p>
+<section class="hero" data-bg="#EAE0CF" data-fg="#2A1E17" data-time="330">
+  <div class="hero__wall" aria-hidden="true">
+    <div class="hero__sun">
+    <svg class="hero__grill" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sunlight" x1="0" y1="0" x2=".4" y2="1">
+          <stop offset="0" stop-color="#FFF6E2"/><stop offset=".55" stop-color="#FDE9C2"/><stop offset="1" stop-color="#F6D49A"/>
+        </linearGradient>
+        <mask id="grillMask" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="600">
+          <path d="M0 600 V200 A200 200 0 0 1 400 200 V600 Z" fill="#fff"/>
+          <g fill="#000"><rect x="97" y="196" width="10" height="404"/><rect x="197" y="196" width="10" height="404"/><rect x="297" y="196" width="10" height="404"/><rect x="0" y="330" width="400" height="9"/><rect x="0" y="462" width="400" height="9"/><rect x="0" y="194" width="400" height="12"/><line x1="245.7" y1="185.2" x2="395.0" y2="136.7" stroke="#000" stroke-width="7"/><line x1="238.8" y1="171.8" x2="365.8" y2="79.5" stroke="#000" stroke-width="7"/><line x1="228.2" y1="161.2" x2="320.5" y2="34.2" stroke="#000" stroke-width="7"/><line x1="214.8" y1="154.3" x2="263.3" y2="5.0" stroke="#000" stroke-width="7"/><line x1="200.0" y1="152.0" x2="200.0" y2="-5.0" stroke="#000" stroke-width="7"/><line x1="185.2" y1="154.3" x2="136.7" y2="5.0" stroke="#000" stroke-width="7"/><line x1="171.8" y1="161.2" x2="79.5" y2="34.2" stroke="#000" stroke-width="7"/><line x1="161.2" y1="171.8" x2="34.2" y2="79.5" stroke="#000" stroke-width="7"/><line x1="154.3" y1="185.2" x2="5.0" y2="136.7" stroke="#000" stroke-width="7"/><circle cx="200" cy="200" r="48" fill="none" stroke="#000" stroke-width="8"/><path d="M60 200 A140 140 0 0 1 340 200" fill="none" stroke="#000" stroke-width="6"/></g>
+        </mask>
+      </defs>
+      <rect width="400" height="600" fill="url(#sunlight)" mask="url(#grillMask)"/>
+    </svg>
+    </div>
+    <div class="hero__leaves"></div>
   </div>
-  <p class="hero__foot">Collection One</p>
+  <div class="hero__inner">
+    <p class="kicker">Artham &nbsp;·&nbsp; Collection One</p>
+    <p class="hero__ta" lang="ta">நாள்</p>
+    <h1 class="hero__title">Naal</h1>
+    <div class="ribbon" aria-hidden="true"><span></span></div>
+    <p class="hero__sub">A day, woven in korai</p>
+  </div>
+  <p class="hero__foot">Morning, through the window</p>
 </section>
 
 <!-- the paai -->
@@ -140,7 +157,7 @@
       <p class="scene__ta"><span lang="ta">வெயில்</span> &nbsp;·&nbsp; sunlight</p>
     </div>
   </div>
-  <div class="verse reveal"><img class="verse__art" src="images/story/cut-veyil.webp" alt="" loading="lazy"><p>Bright enough to be seen from the end of the street.</p></div>
+  <div class="verse reveal"><figure class="plate"><img src="images/story/cut-veyil.webp" alt="" loading="lazy"><figcaption>Plate I &nbsp;·&nbsp; Veyil</figcaption></figure><p>Bright enough to be seen from the end of the street.</p></div>
   <article class="piece" data-id="veyil">
     <figure class="piece__img reveal"><img src="images/bags/veyil.jpg" alt="Veyil, hand bag in korai paai and leather" loading="lazy">
       <button class="spot" style="--x:52%;--y:27%" type="button" aria-expanded="false">Carried by the circle<span>The handle is the cut itself: a circle taken clean out of the leather, the way a katta pai is carried by its fold.</span></button>
@@ -177,7 +194,7 @@
       <p class="scene__ta"><span lang="ta">நிழல்</span> &nbsp;·&nbsp; shade</p>
     </div>
   </div>
-  <div class="verse reveal"><img class="verse__art" src="images/story/cut-nizhal.webp" alt="" loading="lazy"><p>Light through the grill, kept.</p></div>
+  <div class="verse reveal"><figure class="plate"><img src="images/story/cut-nizhal.webp" alt="" loading="lazy"><figcaption>Plate II &nbsp;·&nbsp; Nizhal</figcaption></figure><p>Light through the grill, kept.</p></div>
   <article class="piece" data-id="nizhal">
     <figure class="piece__img reveal"><img src="images/bags/nizhal.jpg" alt="Nizhal, shoulder bag in korai paai and leather" loading="lazy">
       <button class="spot" style="--x:55%;--y:12%" type="button" aria-expanded="false">The arch<span>One long sweep of tan leather, sized to sit close under the arm.</span></button>
@@ -212,7 +229,7 @@
       <p class="scene__ta"><span lang="ta">மாலை</span> &nbsp;·&nbsp; evening</p>
     </div>
   </div>
-  <div class="verse reveal"><img class="verse__art" src="images/story/cut-malai.webp" alt="" loading="lazy"><p>The mat unrolled when people come.</p></div>
+  <div class="verse reveal"><figure class="plate"><img src="images/story/cut-malai.webp" alt="" loading="lazy"><figcaption>Plate III &nbsp;·&nbsp; Malai</figcaption></figure><p>The mat unrolled when people come.</p></div>
   <article class="piece" data-id="malai">
     <figure class="piece__img reveal"><img src="images/bags/malai.jpg" alt="Malai, tote in korai paai and leather" loading="lazy">
       <button class="spot" style="--x:56%;--y:52%" type="button" aria-expanded="false">The oldest colouring<span>Black and beige, the paai as it was in every house, before anyone called it a pattern.</span></button>
@@ -248,7 +265,7 @@
       <p class="scene__ta"><span lang="ta">விழா</span> &nbsp;·&nbsp; celebration</p>
     </div>
   </div>
-  <div class="verse reveal"><img class="verse__art" src="images/story/cut-vizha.webp" alt="" loading="lazy"><p>The colours kept back, for the nights that deserve them.</p></div>
+  <div class="verse reveal"><figure class="plate"><img src="images/story/cut-vizha.webp" alt="" loading="lazy"><figcaption>Plate IV &nbsp;·&nbsp; Vizha</figcaption></figure><p>The colours kept back, for the nights that deserve them.</p></div>
   <article class="piece" data-id="vizha-half-moon">
     <figure class="piece__img reveal"><img src="images/bags/vizha-half-moon.jpg" alt="Half Moon, clutch in korai paai and leather" loading="lazy">
       <button class="spot" style="--x:53%;--y:53%" type="button" aria-expanded="false">Carried by the fold<span>The weave rises on both sides of a leather handle and meets at the top, like a mat folded once.</span></button>
