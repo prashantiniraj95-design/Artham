@@ -320,13 +320,14 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 /* ═══ small illustrations ═══ */
 .verse { display: flex; flex-direction: column; align-items: center; }
 .verse p { margin: 0; }
-.verse__art { position: relative; width: clamp(170px, 20vw, 270px); margin-bottom: 44px;
-  -webkit-mask: radial-gradient(ellipse 70% 68% at 50% 50%, #000 60%, transparent 100%); mask: radial-gradient(ellipse 70% 68% at 50% 50%, #000 60%, transparent 100%); }
-.chapter--malai .verse__art, .chapter--vizha .verse__art { padding: 46px; box-sizing: content-box; background: rgba(246,236,218,.92);
-  -webkit-mask: radial-gradient(closest-side, #000 48%, rgba(0,0,0,.6) 70%, transparent 100%); mask: radial-gradient(closest-side, #000 48%, rgba(0,0,0,.6) 70%, transparent 100%); }
+.verse__art { width: clamp(170px, 20vw, 270px); margin-bottom: 44px; }
+/* on the dark pages the ink needs its paper: a plain sheet, nothing more */
+.chapter--malai .verse__art, .chapter--vizha .verse__art { padding: 18px; box-sizing: content-box; background: #F2EAD7; }
 
 /* ═══ postcards to read ═══ */
 .cards { text-align: center; padding-top: 22vh; }
 .cards__fan { margin-top: 12vh; }
 .cards__hint { margin: 46px 0 0; font: 400 10px/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; color: var(--soft); }
 .lightbox img { box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+.founders__note { max-width: 480px; margin: 30px 0 0; font: 300 17px/1.85 var(--sans); color: color-mix(in srgb, var(--fg) 78%, transparent); }
+.founders__note + .founders__note { margin-top: 14px; }
