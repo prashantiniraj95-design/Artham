@@ -71,16 +71,20 @@
   }, { passive: true });
   window.addEventListener("resize", function () { measure(); paint(); });
   if ("ResizeObserver" in window) new ResizeObserver(function () { measure(); paint(); }).observe(document.body);
-  /* ── the house of Artham: one memory at a time ─────────── */
-  var house = $("#artham"), mem = [].slice.call(document.querySelectorAll("#memory li"));
-  function memories() {
-    if (!house) return;
-    var r = house.getBoundingClientRect(), span = r.height - window.innerHeight;
-    var p = Math.max(0, Math.min(.999, -r.top / span)), at = Math.floor(p * mem.length);
-    mem.forEach(function (li, i) { li.classList.toggle("is-on", i === at); li.classList.toggle("is-past", i < at); });
+  /* ── Artham: korai and leather slide together and are stitched ── */
+  var meetSec = $("#artham"), meet = $("#meet");
+  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+  function meeting() {
+    if (!meetSec || !meet) return;
+    var r = meetSec.getBoundingClientRect(), p = clamp01(-r.top / (r.height - window.innerHeight));
+    if (reduce) p = 1;
+    meet.style.setProperty("--a", clamp01(p / .55).toFixed(3));          // the two halves approach
+    meet.style.setProperty("--s", clamp01((p - .55) / .2).toFixed(3));   // the stitch runs down the seam
+    meet.style.setProperty("--m", clamp01((p - .74) / .14).toFixed(3));  // the mark is set
+    meetSec.classList.toggle("is-met", p > .82);
   }
-  window.addEventListener("scroll", function () { requestAnimationFrame(memories); }, { passive: true });
-  memories();
+  window.addEventListener("scroll", function () { requestAnimationFrame(meeting); }, { passive: true });
+  meeting();
 
   measure(); paint();
   if (reduce) light.style.transition = "none";

@@ -412,3 +412,43 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 .day__ta { margin: 22px 0 0; font: 400 11px/1 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: #8A6A3A; }
 .day__ta span { font-size: 16px; letter-spacing: 0; }
 .day .whisper { margin-top: 28px; }
+
+/* hero: Vizha's window holds both clutches */
+.arches__twin { width: clamp(96px, 16vw, 252px) !important; }
+.arch--twin { display: flex; gap: 3px; aspect-ratio: 1 / 1 !important; }
+.arch--twin img { width: 50%; min-width: 0; }
+.arch--twin img:first-child { border-radius: 999px 0 0 2px; }
+.arch--twin img:last-child { border-radius: 0 999px 2px 0; }
+
+/* ═══ Artham: korai meets leather ═══ */
+.meet { height: 360vh; position: relative; }
+.meet__sticky { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding: 0 var(--g); }
+.meet__stage { --a: 0; --s: 0; --m: 0; position: relative; width: min(880px, 90vw); height: min(46vh, 420px); margin: 4vh 0 7vh; }
+.meet__half { position: absolute; top: 0; bottom: 0; width: 50%; display: flex; align-items: flex-end; padding: 18px 22px;
+  box-shadow: 0 40px 60px -40px rgba(40,25,15,.55); transition: border-radius .6s; }
+.meet__half span { font: 400 10px/1 var(--sans); letter-spacing: .42em; text-transform: uppercase; }
+.meet__korai { left: 0; justify-content: flex-start; color: #5A4628; border-radius: 4px 0 0 4px;
+  transform: translateX(calc((1 - var(--a)) * -46%)) rotate(calc((1 - var(--a)) * -4deg));
+  background:
+    repeating-linear-gradient(0deg, rgba(255,250,232,.32) 0 1px, rgba(90,70,30,.14) 1px 2px, transparent 2px 4px),
+    repeating-linear-gradient(90deg, transparent 0 13px, rgba(255,255,255,.28) 13px 14px, transparent 14px 15px),
+    linear-gradient(90deg, transparent 0 62%, #4A2C47 62% 70%, #EADCB8 70% 72%, #9A3A2C 72% 77%, #EADCB8 77% 79%, #4A2C47 79% 87%, transparent 87%),
+    linear-gradient(160deg, #E4D3A8, #D6C291 45%, #CDB683); }
+.meet__leather { right: 0; justify-content: flex-end; color: #F3E1C6; border-radius: 0 4px 4px 0;
+  transform: translateX(calc((1 - var(--a)) * 46%)) rotate(calc((1 - var(--a)) * 4deg));
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.12 0 0 0 0 0.04 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 30% 20%, rgba(255,214,160,.35), transparent 60%),
+    linear-gradient(160deg, #B9773F, #A0602D 50%, #84491E); }
+/* the edge of the leather, turned and stitched */
+.meet__leather::before { content: ""; position: absolute; inset: 10px; border: 1px dashed rgba(250,225,190,.45); border-radius: 2px; pointer-events: none; }
+.meet__stitch { position: absolute; left: 50%; top: 0; bottom: 0; width: 10px; height: 100%; margin-left: -5px; overflow: visible; }
+.meet__stitch line { stroke: #F3E1C6; stroke-width: 2; stroke-dasharray: 8 9; stroke-linecap: round;
+  clip-path: inset(0 0 calc((1 - var(--s)) * 100%) 0); }
+.meet__stitch { clip-path: inset(0 0 calc((1 - var(--s)) * 100%) 0); }
+.meet__mark { position: absolute; left: 50%; bottom: 14%; width: 46px; height: 46px; margin-left: -23px; color: #D8BC86;
+  opacity: var(--m); transform: scale(calc(.6 + var(--m) * .4)); filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
+.meet__line { margin: 0; font: 300 clamp(28px, 3.8vw, 56px)/1.15 var(--display); letter-spacing: -.02em; opacity: 0; transform: translateY(20px); transition: opacity 1.4s var(--ease), transform 1.4s var(--ease); }
+.meet__line em { color: #A8834A; }
+.meet.is-met .meet__line { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .meet__line { opacity: 1; transform: none; } }
