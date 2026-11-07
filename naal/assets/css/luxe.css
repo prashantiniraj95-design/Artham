@@ -560,3 +560,30 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
   .panel__inset { left: 56%; width: 26%; }
   .panel__visual .panel__img { height: 72%; }
 }
+
+/* one photograph and the bag, side by side, with the specs beside them */
+.panel { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
+.panel__visual { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 1.4vw, 20px); height: min(64svh, 620px); }
+.panel__scene { position: static; width: 100%; height: 100%; }
+.panel__visual .panel__img { position: relative; right: auto; bottom: auto; height: 100%; width: 100%; background: #F6F0E6; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.panel__visual .panel__img > img { width: 100%; height: 100%; object-fit: cover; border: 0; box-shadow: none; }
+@media (max-width: 860px) {
+  .panel__visual { height: 40svh; gap: 8px; }
+}
+/* the bag keeps its own proportions (so the + points stay true); the photograph fills the rest */
+.panel__visual { display: flex; }
+.panel__scene { flex: 1 1 auto; min-width: 0; }
+.panel__visual .panel__img { flex: none; width: auto; background: none; overflow: visible; }
+.panel__visual .panel__img > img { width: auto; height: 100%; object-fit: initial; box-shadow: 0 40px 70px -40px rgba(0,0,0,.55); }
+/* equal halves: the photograph, and the bag fitted inside its own half */
+.panel__visual { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.panel__scene { height: 100%; width: 100%; object-fit: cover; }
+.panel__visual .panel__img { justify-self: center; width: fit-content; height: auto; max-width: 100%; }
+.panel__visual .panel__img > img { display: block; width: auto; height: auto; max-width: 100%; max-height: min(64svh, 620px); }
+@media (max-width: 860px) {
+  .panel { grid-template-columns: 1fr; }
+  .panel__visual { height: auto; grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .panel__scene { height: auto; min-height: 100%; aspect-ratio: 3 / 4; }
+  .panel__visual .panel__img { align-self: center; }
+  .panel__visual .panel__img > img { max-height: 40svh; }
+}
