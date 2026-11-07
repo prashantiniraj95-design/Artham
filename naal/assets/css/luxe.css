@@ -546,3 +546,17 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
   .panel__ctas { margin-top: 18px; }
 }
 @media (max-width: 600px) { .shop__title .kicker { display: none; } .shop__ta { display: none; } }
+
+/* each bag in its scene: the chapter photo, a second one framed, the bag in front */
+.panel__visual { position: relative; height: min(66svh, 640px); width: 100%; }
+.panel__scene { position: absolute; left: 0; top: 0; width: 62%; height: 100%; object-fit: cover; box-shadow: 0 40px 70px -40px rgba(0,0,0,.55); }
+.panel__inset { position: absolute; left: 50%; top: 5%; width: 21%; aspect-ratio: 4 / 5; object-fit: cover; border: 6px solid #F6F0E6; box-shadow: 0 24px 40px -18px rgba(0,0,0,.5); transform: rotate(3deg); z-index: 1; }
+.panel__visual .panel__img { position: absolute; right: 0; bottom: 0; height: 76%; width: auto; margin: 0; z-index: 2; }
+.panel__visual .panel__img > img { height: 100%; width: auto; max-width: none; max-height: none; border: 7px solid #F6F0E6; box-shadow: 0 50px 80px -40px rgba(0,0,0,.6); box-sizing: border-box; }
+.panel__mood { display: none; }
+@media (max-width: 860px) {
+  .panel__visual { height: 48svh; }
+  .panel__scene { width: 70%; }
+  .panel__inset { left: 56%; width: 26%; }
+  .panel__visual .panel__img { height: 72%; }
+}
