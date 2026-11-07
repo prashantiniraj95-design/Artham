@@ -452,3 +452,13 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 .meet__line em { color: #A8834A; }
 .meet.is-met .meet__line { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .meet__line { opacity: 1; transform: none; } }
+
+/* the idea behind Artham */
+.idea { padding: 22vh var(--g) 12vh; text-align: center; }
+.idea__title { margin: 0; font: 300 clamp(44px, 6vw, 96px)/1.02 var(--display); letter-spacing: -.03em; }
+.idea__title em { color: #A8834A; }
+.idea__body { max-width: 640px; margin: 48px auto 0; }
+.idea__body p { margin: 0 0 20px; font: 300 clamp(16px, 1.25vw, 19px)/1.85 var(--sans); color: color-mix(in srgb, var(--fg) 80%, transparent); }
+
+/* each bag story, in a gist */
+.gist { max-width: 600px; margin: 26px auto 0 !important; font: 300 clamp(15.5px, 1.15vw, 17.5px)/1.85 var(--sans); color: color-mix(in srgb, var(--fg) 74%, transparent); letter-spacing: 0; }
