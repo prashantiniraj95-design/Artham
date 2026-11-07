@@ -89,3 +89,60 @@
   measure(); paint();
   if (reduce) light.style.transition = "none";
 })();
+
+/* ── Collection One on one screen: four hours as tabs, Vizha's two clutches ── */
+(function () {
+  "use strict";
+  var shop = document.getElementById("naal");
+  if (!shop || !shop.classList.contains("shop")) return;
+  var panels = [].slice.call(shop.querySelectorAll(".panel"));
+  var tabs = [].slice.call(shop.querySelectorAll("[data-go]"));
+  var order = ["veyil", "nizhal", "malai", "vizha"];
+  var sun = shop.querySelector(".shop__sun"), count = document.getElementById("shopCount");
+  var vizhaPick = "vizha-half-moon", current = "veyil";
+
+  function show(tab, panelId) {
+    if (tab === "vizha") vizhaPick = panelId || vizhaPick;
+    var want = tab === "vizha" ? vizhaPick : tab;
+    panels.forEach(function (p) {
+      var on = p.dataset.panel === want;
+      p.hidden = !on; p.classList.toggle("is-active", on);
+      if (on) { shop.style.setProperty("--pbg", p.style.getPropertyValue("--pbg")); shop.style.setProperty("--pfg", p.style.getPropertyValue("--pfg")); }
+    });
+    shop.querySelectorAll("[data-show]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.show === want ? "true" : "false"); });
+    tabs.forEach(function (t, i) {
+      var on = t.dataset.go === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      if (on && sun) { sun.style.left = (t.offsetLeft + t.offsetWidth / 2) + "px"; }
+    });
+    current = tab;
+    count.textContent = "0" + (order.indexOf(tab) + 1) + " / 04";
+  }
+  function step(d) { show(order[(order.indexOf(current) + d + 4) % 4]); }
+
+  tabs.forEach(function (t) { t.addEventListener("click", function () { show(t.dataset.go); }); });
+  shop.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-show]"); if (b) show("vizha", b.dataset.show);
+    var a = e.target.closest("[data-step]"); if (a) step(+a.dataset.step);
+  });
+  shop.addEventListener("keydown", function (e) {
+    if (e.target.closest("input")) return;
+    if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1);
+  });
+  // swipe between hours on a phone
+  var x0 = null;
+  shop.querySelector(".shop__panels").addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  shop.querySelector(".shop__panels").addEventListener("touchend", function (e) {
+    if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 60) step(dx < 0 ? 1 : -1);
+  });
+  // links to an hour (menu, calendar sheet) open that hour here
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href="#veyil"], a[href="#nizhal"], a[href="#malai"], a[href="#vizha"]');
+    if (!a) return;
+    e.preventDefault(); show(a.getAttribute("href").slice(1));
+    shop.scrollIntoView({ behavior: "smooth" });
+  });
+  window.addEventListener("resize", function () { show(current); });
+  show("veyil");
+})();

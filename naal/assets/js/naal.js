@@ -40,7 +40,8 @@ var NAAL = {
   });
   $$("[data-price-for]").forEach(function (p) { p.textContent = byId[p.getAttribute("data-price-for")].price || ""; });
   var ig = "https://instagram.com/" + NAAL.instagram;
-  $("#igLink").href = ig; $("#footIg").href = ig;
+  if ($("#igLink")) $("#igLink").href = ig;
+  if ($("#footIg")) $("#footIg").href = ig;
   $("#footWa").href = wa("Hello Artham! I found you through Naal.");
 
   /* ── the hour: page colour, calendar sheet, dial sun ───── */
@@ -306,7 +307,7 @@ var NAAL = {
 
   // the order grid near the end
   var grid = $("#orderGrid");
-  NAAL.bags.forEach(function (b) {
+  if (grid) NAAL.bags.forEach(function (b) {
     var li = document.createElement("li"); li.className = "tile reveal";
     li.innerHTML = '<a class="tile__img" href="#' + b.id.split("-")[0] + '"><img src="' + b.img + '" alt="" loading="lazy"></a>' +
       '<div class="tile__body"><span class="tile__hour">' + b.hour + '</span><span class="tile__name">' + b.name + '</span>' +
@@ -377,7 +378,7 @@ var NAAL = {
     if (lastFocus) lastFocus.focus();
   }
   $("#bagBtn").addEventListener("click", openDrawer);
-  $("#orderOpen").addEventListener("click", openDrawer);
+  if ($("#orderOpen")) $("#orderOpen").addEventListener("click", openDrawer);
   $("#drawerClose").addEventListener("click", closeDrawer);
   scrim.addEventListener("click", closeDrawer);
   drawer.addEventListener("click", function (e) { if (e.target.closest(".drawer__empty a")) closeDrawer(); });
