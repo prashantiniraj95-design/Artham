@@ -71,6 +71,17 @@
   }, { passive: true });
   window.addEventListener("resize", function () { measure(); paint(); });
   if ("ResizeObserver" in window) new ResizeObserver(function () { measure(); paint(); }).observe(document.body);
+  /* ── the house of Artham: one memory at a time ─────────── */
+  var house = $("#artham"), mem = [].slice.call(document.querySelectorAll("#memory li"));
+  function memories() {
+    if (!house) return;
+    var r = house.getBoundingClientRect(), span = r.height - window.innerHeight;
+    var p = Math.max(0, Math.min(.999, -r.top / span)), at = Math.floor(p * mem.length);
+    mem.forEach(function (li, i) { li.classList.toggle("is-on", i === at); li.classList.toggle("is-past", i < at); });
+  }
+  window.addEventListener("scroll", function () { requestAnimationFrame(memories); }, { passive: true });
+  memories();
+
   measure(); paint();
   if (reduce) light.style.transition = "none";
 })();

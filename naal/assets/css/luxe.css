@@ -367,3 +367,48 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 .loomplate { display: flex; justify-content: center; padding: 22vh var(--g) 0; }
 .plate--large { width: clamp(260px, 34vw, 460px); margin: 0; padding: 24px 24px 0; }
 .plate--large::before { inset: 11px; }
+
+/* ═══ hero: the house of Artham, Collection One in its windows ═══ */
+.hero { padding: 110px var(--g) 90px; }
+.hero__mark { display: block; width: 46px; height: 46px; color: #A8834A; margin: 0 auto 26px; animation: up 2.2s .2s var(--ease) both; }
+.hero__brand { margin: 0; line-height: 0; animation: up 2.6s .35s var(--ease) both; }
+.hero__brand svg { width: clamp(260px, 38vw, 560px); height: clamp(40px, 5.8vw, 86px); color: #2A1E17; }
+.hero__line { font: 300 italic clamp(19px, 1.9vw, 28px)/1.3 var(--display); color: #5E4A38; margin: 26px 0 0; animation: up 2.6s .6s var(--ease) both; }
+.hero__coll { display: flex; align-items: center; justify-content: center; gap: 18px; margin: clamp(40px, 7vh, 72px) 0 24px; animation: up 2.6s .9s var(--ease) both; }
+.hero__coll span { font: 400 10px/1 var(--sans); letter-spacing: .44em; text-transform: uppercase; color: #8A6A3A; }
+.hero__coll em { font-size: clamp(30px, 3vw, 44px); line-height: 1; color: #2A1E17; letter-spacing: -.02em; }
+.hero__coll::before, .hero__coll::after { content: ""; width: clamp(30px, 6vw, 90px); height: 1px; background: rgba(168,131,74,.55); }
+.arches { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: clamp(8px, 1.8vw, 28px); }
+.arches li { width: clamp(60px, 10.5vw, 168px); animation: up 2.4s var(--d) var(--ease) both; }
+.arches a { display: block; text-decoration: none; text-align: center; }
+.arch { display: block; aspect-ratio: 2 / 3; padding: 4px; border-radius: 999px 999px 3px 3px; background: #F7F1E7;
+  box-shadow: 0 0 0 1px rgba(168,131,74,.45), 0 30px 40px -26px rgba(60,40,20,.55); transition: transform 1s var(--ease), box-shadow 1s var(--ease); }
+.arch img { width: 100%; height: 100%; object-fit: cover; border-radius: 999px 999px 2px 2px; filter: saturate(.92); transition: filter 1s; }
+.arches a:hover .arch { transform: translateY(-10px); box-shadow: 0 0 0 1px rgba(168,131,74,.8), 0 40px 50px -26px rgba(60,40,20,.6); }
+.arches a:hover img { filter: saturate(1.08); }
+.arches b { display: block; margin-top: 14px; font: 300 clamp(13px, 1.2vw, 18px)/1.1 var(--display); color: #2A1E17; }
+.arches i { display: block; margin-top: 6px; font: 400 9px/1 var(--sans); font-style: normal; letter-spacing: .3em; color: #8A6A3A; }
+@media (max-width: 600px) { .arches b { font-size: 11px; } .arches i { display: none; } .hero__coll::before, .hero__coll::after { display: none; } }
+
+/* ═══ the house of Artham: memories, one at a time ═══ */
+.house { height: 460vh; position: relative; }
+.house__sticky { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding: 0 var(--g); }
+.house__ta { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; white-space: nowrap; font-size: clamp(110px, 19vw, 300px); color: #A8834A; opacity: .07; pointer-events: none; }
+.memory { list-style: none; margin: 0; padding: 0; position: relative; width: min(900px, 100%); height: 46vh; }
+.memory li { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; filter: blur(8px); transform: translateY(24px);
+  transition: opacity 1.2s var(--ease), filter 1.2s var(--ease), transform 1.2s var(--ease); }
+.memory li.is-past { transform: translateY(-24px); }
+.memory li.is-on { opacity: 1; filter: none; transform: none; }
+.memory svg { width: clamp(64px, 7vw, 96px); height: auto; fill: none; stroke: #A8834A; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 40px; color: #A8834A; }
+.memory p { margin: 0; font: 300 italic clamp(32px, 4.6vw, 68px)/1.12 var(--display); letter-spacing: -.02em; }
+
+.core { padding: 16vh var(--g) 26vh; text-align: center; }
+.core__line { margin: 0; font: 300 clamp(44px, 6.4vw, 104px)/1.02 var(--display); letter-spacing: -.03em; }
+.core__line em { color: #A8834A; }
+.core__sub { margin: 36px 0 0; font: 400 10.5px/1 var(--sans); letter-spacing: .44em; text-transform: uppercase; color: var(--soft); }
+
+/* ═══ Collection One opens ═══ */
+.day__name { margin: 0; font: 300 italic clamp(110px, 17vw, 250px)/.86 var(--display); letter-spacing: -.045em; }
+.day__ta { margin: 22px 0 0; font: 400 11px/1 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: #8A6A3A; }
+.day__ta span { font-size: 16px; letter-spacing: 0; }
+.day .whisper { margin-top: 28px; }

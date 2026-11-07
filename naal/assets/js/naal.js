@@ -129,6 +129,7 @@ var NAAL = {
   /* ── the paai unrolls ───────────────────────────────────── */
   var paai = $("#paai"), mat = $("#mat"), mems = $$("#memories li");
   function unroll() {
+    if (!paai || !mat) return;
     var r = paai.getBoundingClientRect(), vh = window.innerHeight;
     var total = r.height - vh;
     var p = Math.max(0, Math.min(1, -r.top / (total * 0.7)));
