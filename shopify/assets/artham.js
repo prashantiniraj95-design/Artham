@@ -106,11 +106,92 @@
     for (var i = 0; i < words.length; i++) words[i].classList.toggle('is-lit', i < n);
   }
 
+  /* ── the gate: the film plays inside the logo; scrolling walks through its disc ── */
+  var gate = $('[data-gate]');
+  var gateMedia = gate && $('[data-gate-media]', gate);
+  var gateGhost = gate && $('[data-gate-ghost]', gate);
+  // where the disc sits inside the mark, as fractions of the mark's width
+  var DISC = { x: 0.45, y: 0.2, r: 0.2, ratio: 1564 / 1600 };
+  if (gate && !reduced && window.CSS && CSS.supports && (CSS.supports('mask-size', '10px') || CSS.supports('-webkit-mask-size', '10px'))) {
+    gate.classList.add('is-gated');
+  } else { gate = null; }
+
+  function readGate() {
+    if (!gate) return;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var span = gate.offsetHeight - vh;
+    var p = Math.max(0, Math.min(1, window.scrollY / (span * 0.86)));
+    var g = gateGhost.getBoundingClientRect();
+    var s0 = g.width;
+    var far = Math.sqrt(vw * vw + vh * vh) / 2;
+    var s1 = (far * 1.12) / DISC.r;
+    var e = p * p * (3 - 2 * p);
+    var s = s0 * Math.pow(s1 / s0, e);
+    // the disc's centre travels from where it sits in the logo to the middle of the screen
+    var stick = gate.firstElementChild.getBoundingClientRect();
+    var ax0 = g.left + s0 * DISC.x, ay0 = (g.top - stick.top) + s0 * DISC.y;
+    var ax = ax0 + (vw / 2 - ax0) * e, ay = ay0 + (vh / 2 - ay0) * e;
+    gateMedia.style.setProperty('--gs', s.toFixed(1) + 'px');
+    gateMedia.style.setProperty('--gx', (ax - s * DISC.x).toFixed(1) + 'px');
+    gateMedia.style.setProperty('--gy', (ay - s * DISC.y).toFixed(1) + 'px');
+    gate.style.setProperty('--gate-out', Math.max(0, 1 - p * 3.2).toFixed(3));
+    gate.style.setProperty('--gate-in', Math.max(0, Math.min(1, (p - 0.74) / 0.22)).toFixed(3));
+    var img = p >= 1 ? 'none' : 'url("' + gateMedia.getAttribute('data-gate-src') + '")';
+    if (gateMedia.getAttribute('data-mask') !== img) {
+      gateMedia.setAttribute('data-mask', img);
+      gateMedia.style.webkitMaskImage = img; gateMedia.style.maskImage = img;
+    }
+    gate.classList.toggle('is-open', p >= 1);
+    if (header) {
+      header.classList.toggle('is-gate', p < 0.5);
+      header.classList.toggle('is-over-film', p > 0.62);
+    }
+  }
+
+  /* ── the sun: it crosses the bottom of the screen as the hours pass ─────── */
+  var sunline = $('[data-sunline]');
+  var chapters = $$('[data-minutes]');
+  var NAMES = { veyil: ['Veyil', 'வெயில்'], nizhal: ['Nizhal', 'நிழல்'], maalai: ['Maalai', 'மாலை'], vizha: ['Vizha', 'விழா'] };
+  var DAWN = 360, NIGHT = 1350;
+
+  function readSun() {
+    if (!sunline || !chapters.length) return;
+    var vh = window.innerHeight, mid = vh / 2;
+    var first = chapters[0].getBoundingClientRect();
+    var last = chapters[chapters.length - 1].getBoundingClientRect();
+    var on = first.top < vh * 0.7 && last.bottom > vh * 0.5;
+    sunline.classList.toggle('is-on', on);
+    if (!on) return;
+    // each chapter's own time sits at its opening photograph; between them the clock runs on
+    var pts = [{ y: first.top - vh * 0.3 - mid, m: DAWN }];
+    chapters.forEach(function (c) {
+      var r = c.getBoundingClientRect();
+      pts.push({ y: r.top + Math.min(r.height, vh) * 0.5 - mid, m: Number(c.getAttribute('data-minutes')), key: c.getAttribute('data-hour') });
+    });
+    pts.push({ y: last.bottom - mid, m: NIGHT });
+    var m = pts[pts.length - 1].m;
+    for (var i = 0; i < pts.length - 1; i++) {
+      if (pts[i + 1].y > 0) {
+        var t = Math.max(0, Math.min(1, (0 - pts[i].y) / (pts[i + 1].y - pts[i].y)));
+        m = pts[i].m + (pts[i + 1].m - pts[i].m) * t; break;
+      }
+    }
+    m = Math.round(m);
+    var h = Math.floor(m / 60), mm = m % 60;
+    var x = (m - DAWN) / (NIGHT - DAWN);
+    sunline.style.setProperty('--sun', x.toFixed(4));
+    sunline.classList.toggle('is-late', x > 0.62);
+    var name = NAMES[scrollHour] || ['', ''];
+    $('[data-sun-time]', sunline).textContent = ((h + 11) % 12 + 1) + ':' + (mm < 10 ? '0' : '') + mm + (h < 12 ? ' am' : ' pm');
+    $('[data-sun-name]', sunline).textContent = name[0];
+    $('[data-sun-tamil]', sunline).textContent = name[1];
+  }
+
   /* ── one scroll loop for all of it ───────────────────────────────────── */
   var ticking = false;
   function frame() {
     ticking = false;
-    readHour(); paintHour(); readHeader(); readDrift(); readWords();
+    readHour(); paintHour(); readHeader(); readGate(); readDrift(); readWords(); readSun();
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', onScroll, { passive: true });

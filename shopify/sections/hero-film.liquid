@@ -2,8 +2,9 @@
   The film. This is the first thing anyone sees: one day in one house, in four cuts.
   Upload your own film in the theme editor; until then the theme plays its own.
 {%- endcomment -%}
-<section class="film" data-film>
-  <div class="film__media">
+<section class="film" data-film data-gate>
+ <div class="film__stick">
+  <div class="film__media" data-gate-media data-gate-src="{{ 'logo-mark-large.png' | asset_url }}">
     {%- if section.settings.video != blank -%}
       {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '1920x' }}
     {%- else -%}
@@ -13,13 +14,20 @@
     {%- endif -%}
   </div>
 
+  <div class="film__lockup" data-gate-lockup aria-hidden="true">
+    <span class="film__lockup-mark" data-gate-ghost></span>
+    <span class="logo-word" style="-webkit-mask-image: url('{{ 'logo-wordmark.png' | asset_url }}'); mask-image: url('{{ 'logo-wordmark.png' | asset_url }}')"></span>
+    <span class="label">{{ section.settings.gate_line }}</span>
+    <span class="film__cue"><i></i>{{ section.settings.gate_cue }}</span>
+  </div>
+
   <button class="film__toggle" type="button" data-film-toggle aria-pressed="false">Pause film</button>
 
   <div class="film__inner">
     <div>
       <p class="label film__eyebrow">{{ section.settings.eyebrow }}</p>
       <div class="film__title-row">
-        <h1 class="display film__title"><span class="visually-hidden">{{ shop.name }} — </span>{{ section.settings.title }}</h1>
+        <h1 class="display film__title"><span class="visually-hidden">{{ shop.name }}, </span>{{ section.settings.title }}</h1>
         <p class="film__gloss">
           <span class="tamil" lang="ta">{{ section.settings.tamil }}</span>
           <span>{{ section.settings.gloss }}</span>
@@ -41,19 +49,22 @@
     <li><a class="film__hour" href="#maalai" data-film-hour><span>III · Maalai</span><i>Evening</i></a></li>
     <li><a class="film__hour" href="#vizha" data-film-hour><span>IV · Vizha</span><i>Festival night</i></a></li>
   </ol>
+ </div>
 </section>
 
 {% schema %}
 {
   "name": "Hero film",
   "settings": [
-    { "type": "video", "id": "video", "label": "Film", "info": "Landscape, 10–30 seconds, no sound needed. It plays muted on a loop. Four equal cuts — morning, afternoon, evening, night — line up with the four markers under the film." },
+    { "type": "video", "id": "video", "label": "Film", "info": "Landscape, 10 to 30 seconds, no sound needed. It plays muted on a loop. Four equal cuts (morning, afternoon, evening, night) line up with the four markers under the film." },
     { "type": "image_picker", "id": "poster", "label": "Still shown while the film loads" },
+    { "type": "text", "id": "gate_line", "label": "Line under the logo", "default": "Collection One · Naal · a day" },
+    { "type": "text", "id": "gate_cue", "label": "Scroll cue", "default": "Scroll, and the sun comes up" },
     { "type": "text", "id": "eyebrow", "label": "Small line", "default": "Collection One · Korai paai, Pathamadai" },
     { "type": "text", "id": "title", "label": "Title", "default": "Naal" },
     { "type": "text", "id": "tamil", "label": "Title in Tamil", "default": "நாள்" },
     { "type": "text", "id": "gloss", "label": "Meaning", "default": "a day" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "One day, through one house. Sun on a market run, shade across the tiles, the mat unrolled when people arrive — and the colours kept back for the nights that deserve them." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "One day, through one house. Sun on a market run, shade across the tiles, the mat unrolled when people arrive, and the colours kept back for the nights that deserve them." },
     { "type": "text", "id": "button_label", "label": "Button", "default": "Shop Naal" },
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "text", "id": "link_label", "label": "Second link", "default": "Begin the day" }

@@ -38,11 +38,11 @@
   </div>
 </section>
 
-<nav class="dial" data-dial aria-label="Chapters">
-  {%- for block in section.blocks -%}
-    <a href="#{{ block.settings.hour }}" data-dial-link="{{ block.settings.hour }}"><span>{{ block.settings.title }}</span></a>
-  {%- endfor -%}
-</nav>
+<div class="sunline" data-sunline aria-hidden="true">
+  <span class="sunline__track"></span>
+  <span class="sunline__sun" data-sun></span>
+  <span class="sunline__read"><b data-sun-time>6:00 am</b><span data-sun-name></span><span class="tamil" lang="ta" data-sun-tamil></span></span>
+</div>
 
 {% schema %}
 {

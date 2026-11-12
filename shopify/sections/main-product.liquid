@@ -25,7 +25,7 @@
   assign scene_1 = 'scene-' | append: key | append: '-1.jpg'
   assign scene_2 = 'scene-' | append: key | append: '-2.jpg'
   assign weave = 'weave-' | append: key | append: '.jpg'
-  assign short_title = product.title | split: ' — ' | first
+  assign short_title = product.title
 -%}
 <div data-hour="{{ key | default: 'dawn' }}" data-hour-pin>
   <section class="product">
@@ -58,7 +58,7 @@
         {%- if key != blank -%}
           <p class="product__gloss"><span class="tamil" lang="ta">{{ tamil }}</span><em>{{ meaning }}</em></p>
         {%- endif -%}
-        {%- if product.type != blank -%}<p class="label label--fg product__type">{{ product.type }}{% if product.title contains ' — ' %} · {{ product.title | split: ' — ' | last }}{% endif %}</p>{%- endif -%}
+        {%- if product.type != blank -%}<p class="label label--fg product__type">{{ product.type }}</p>{%- endif -%}
 
         <p class="product__price" data-price data-money="{{ shop.money_format | strip_html | escape }}">
           {%- if variant.compare_at_price > variant.price -%}<s>{{ variant.compare_at_price | money_without_trailing_zeros }}</s>{%- endif -%}
@@ -151,14 +151,14 @@
   "settings": [
     { "type": "text", "id": "tax_note", "label": "Line under the price", "default": "Inclusive of all taxes" },
     { "type": "checkbox", "id": "show_scenes", "label": "Show the hour's photograph and the weave in the gallery", "default": true },
-    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show the quick-buy button", "default": false }
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show the quick buy button", "default": false }
   ],
   "blocks": [
     { "type": "assurance", "name": "Small promise", "settings": [
-      { "type": "text", "id": "text", "label": "Text", "default": "Woven by hand — no two quite alike" } ] },
-    { "type": "fold", "name": "Fold-out", "settings": [
+      { "type": "text", "id": "text", "label": "Text", "default": "Woven by hand, no two quite alike" } ] },
+    { "type": "fold", "name": "Fold out", "settings": [
       { "type": "text", "id": "title", "label": "Title", "default": "Materials & make" },
-      { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Korai paai hand-woven in Pathamadai, Tamil Nadu. Leather, hand-finished.</p>" },
+      { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Korai paai handwoven in Pathamadai, Tamil Nadu. Leather, hand finished.</p>" },
       { "type": "checkbox", "id": "open", "label": "Open to begin with", "default": false } ] }
   ]
 }

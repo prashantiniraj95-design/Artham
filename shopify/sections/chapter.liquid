@@ -25,36 +25,34 @@
   assign light = 'light-' | append: key | append: '.jpg'
   assign piece_count = section.blocks.size
 -%}
-<section class="chapter chapter--{{ key }}{% if section.settings.flip %} chapter--flip{% endif %}" id="{{ key }}" data-hour="{{ key }}">
-  <span class="chapter__ghost" lang="ta" aria-hidden="true" data-parallax-x="0.05">{{ tamil }}</span>
-
-  <div class="chapter__grid">
-    <header class="chapter__head">
+<section class="chapter chapter--{{ key }}{% if section.settings.flip %} chapter--flip{% endif %}" id="{{ key }}" data-hour="{{ key }}" data-minutes="{% case key %}{% when 'veyil' %}490{% when 'nizhal' %}880{% when 'maalai' %}1100{% when 'vizha' %}1290{% endcase %}">
+  <header class="chapter__open">
+    <div class="bg" data-parallax="0.12">
+      {% render 'img', image: section.settings.scene, fallback: scene_1, alt: section.settings.scene_alt, sizes: '100vw' %}
+    </div>
+    <span class="chapter__ghost" lang="ta" aria-hidden="true" data-parallax-x="0.06">{{ tamil }}</span>
+    <div class="chapter__head">
       <p class="chapter__meta reveal">
         <span class="label">Chapter {{ numeral }}</span><span class="dot"></span>
-        <span class="label label--fg">{{ period }}</span><span class="dot"></span>
-        <span class="label label--fg">{{ time }}</span>
+        <span class="label">{{ period }}</span><span class="dot"></span>
+        <span class="label">{{ time }}</span>
       </p>
-      <span class="chapter__numeral reveal" aria-hidden="true">{{ numeral }}</span>
       <h2 class="display chapter__title reveal">{{ section.settings.title }}</h2>
       <p class="chapter__gloss reveal"><span class="tamil" lang="ta">{{ tamil }}</span><em>{{ meaning }}</em></p>
-    </header>
-
-    <div class="chapter__scene">
-      <figure class="scene">
-        <div class="scene__main unveil" data-parallax="0.05">
-          {% render 'img', image: section.settings.scene, fallback: scene_1, alt: section.settings.scene_alt, sizes: '(min-width: 860px) 56vw, 86vw' %}
-        </div>
-        <div class="scene__inset unveil" style="--d: 260ms" data-parallax="-0.07">
-          {% render 'img', image: section.settings.scene_2, fallback: scene_2, alt: section.settings.scene_2_alt, sizes: '(min-width: 860px) 22vw, 36vw' %}
-        </div>
-        <figcaption class="scene__caption caption"><span>{{ section.settings.caption }}</span><span>{{ time }}</span></figcaption>
-      </figure>
     </div>
+    <p class="chapter__caption caption reveal">{{ section.settings.caption }}</p>
+  </header>
 
-    <div class="chapter__story reveal">
-      <hr class="rule">
-      <div class="prose">{{ section.settings.text }}</div>
+  <div class="chapter__grid">
+    <div class="chapter__story">
+      <div class="chapter__story-stick reveal">
+        <span class="chapter__numeral" aria-hidden="true">{{ numeral }}</span>
+        <hr class="rule">
+        <div class="prose">{{ section.settings.text }}</div>
+        <figure class="scene__inset unveil" data-parallax="-0.04">
+          {% render 'img', image: section.settings.scene_2, fallback: scene_2, alt: section.settings.scene_2_alt, sizes: '(min-width: 860px) 22vw, 60vw' %}
+        </figure>
+      </div>
     </div>
 
     <div class="chapter__pieces{% if piece_count > 1 %} chapter__pieces--two{% endif %}">
@@ -78,7 +76,7 @@
           endif
         -%}
         <article class="piece" {{ block.shopify_attributes }}>
-          <a class="piece__plate unveil" href="{{ url }}" aria-label="{{ block.settings.name }} — {{ block.settings.kind }}">
+          <a class="piece__plate unveil" href="{{ url }}" aria-label="{{ block.settings.name }}, {{ block.settings.kind }}">
             {% render 'img', image: image, fallback: block.settings.fallback_image, alt: block.settings.alt, sizes: '(min-width: 860px) 30vw, 100vw' %}
             {%- if section.settings.show_light -%}
               <span class="piece__light" style="background-image: url('{{ light | asset_url }}')" data-parallax="0.04" aria-hidden="true"></span>
@@ -108,16 +106,16 @@
   "name": "Chapter",
   "settings": [
     { "type": "select", "id": "hour", "label": "Hour", "default": "veyil", "info": "Sets the chapter's light, its Tamil name, numeral and time.", "options": [
-      { "value": "veyil", "label": "Veyil — morning sun" }, { "value": "nizhal", "label": "Nizhal — afternoon shade" },
-      { "value": "maalai", "label": "Maalai — evening" }, { "value": "vizha", "label": "Vizha — festival night" } ] },
+      { "value": "veyil", "label": "Veyil, morning sun" }, { "value": "nizhal", "label": "Nizhal, afternoon shade" },
+      { "value": "maalai", "label": "Maalai, evening" }, { "value": "vizha", "label": "Vizha, festival night" } ] },
     { "type": "text", "id": "title", "label": "Title", "default": "Veyil" },
     { "type": "checkbox", "id": "flip", "label": "Mirror the layout", "default": false },
     { "type": "richtext", "id": "text", "label": "Story", "default": "<p>Every household keeps a katta pai by the door.</p>" },
     { "type": "header", "content": "Photographs" },
-    { "type": "image_picker", "id": "scene", "label": "Large photograph", "info": "Portrait, 4:5. The hour itself — light, not product." },
-    { "type": "text", "id": "scene_alt", "label": "Large photograph — description" },
+    { "type": "image_picker", "id": "scene", "label": "Large photograph", "info": "Portrait, 4:5. The hour itself, light, not product." },
+    { "type": "text", "id": "scene_alt", "label": "Large photograph, description" },
     { "type": "image_picker", "id": "scene_2", "label": "Small photograph", "info": "Portrait, 3:4. A detail from the same hour." },
-    { "type": "text", "id": "scene_2_alt", "label": "Small photograph — description" },
+    { "type": "text", "id": "scene_2_alt", "label": "Small photograph description" },
     { "type": "text", "id": "caption", "label": "Caption" },
     { "type": "checkbox", "id": "show_light", "label": "Lay the hour's light over the product photograph", "default": true, "info": "Switch off once the bags have been photographed in their own light." }
   ],
@@ -129,10 +127,10 @@
         { "type": "product", "id": "product", "label": "Product" },
         { "type": "text", "id": "handle", "label": "Product handle", "info": "Used when no product is chosen above, so the page links itself up once the product exists." },
         { "type": "text", "id": "name", "label": "Name", "default": "Veyil" },
-        { "type": "text", "id": "kind", "label": "Kind of bag", "default": "Circle-handle hand bag" },
+        { "type": "text", "id": "kind", "label": "Kind of bag", "default": "Circle handle hand bag" },
         { "type": "textarea", "id": "text", "label": "Text" },
         { "type": "image_picker", "id": "image", "label": "Photograph", "info": "Leave empty to use the product's first photograph." },
-        { "type": "text", "id": "alt", "label": "Photograph — description" },
+        { "type": "text", "id": "alt", "label": "Photograph, description" },
         { "type": "image_picker", "id": "weave", "label": "Weave swatch" },
         { "type": "text", "id": "fallback_image", "label": "Theme file for the photograph" },
         { "type": "text", "id": "fallback_weave", "label": "Theme file for the swatch" }

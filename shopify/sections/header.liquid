@@ -21,7 +21,8 @@
     <span></span><span></span>
   </button>
 
-  <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }} — home">
+  <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}, home">
+    <span class="logo-mark" style="-webkit-mask-image: url('{{ 'logo-mark.png' | asset_url }}'); mask-image: url('{{ 'logo-mark.png' | asset_url }}')"></span>
     <span class="logo-word" style="-webkit-mask-image: url('{{ 'logo-wordmark.png' | asset_url }}'); mask-image: url('{{ 'logo-wordmark.png' | asset_url }}')"></span>
   </a>
 
@@ -50,7 +51,7 @@
       "type": "link_list",
       "id": "menu",
       "label": "Menu",
-      "info": "Leave empty to use the built-in links: Naal, The Paai, The House."
+      "info": "Leave empty to use the built in links: Naal, The Paai, The House."
     }
   ]
 }

@@ -60,9 +60,9 @@
           "settings": {
             "handle": "veyil",
             "name": "Veyil",
-            "kind": "Circle-handle hand bag",
+            "kind": "Circle handle hand bag",
             "text": "A circle cut clean through leather, the weave burning through the opening.",
-            "alt": "Veyil hand bag held by its circular cut-out handle: tan leather around crimson and natural striped paai",
+            "alt": "Veyil hand bag held by its circular cutout handle: tan leather around crimson and natural striped paai",
             "fallback_image": "bag-veyil.jpg",
             "fallback_weave": "weave-veyil.jpg"
           }
@@ -75,7 +75,7 @@
         "hour": "veyil",
         "title": "Veyil",
         "flip": false,
-        "text": "<p>Every household keeps a katta pai by the door — the one grabbed without thinking, on the way out for a market run.</p><p>Folded under an arm, bright enough to be picked out from the end of the street. Veyil keeps that brightness, and that way of being carried: the same readiness, made for the open sun.</p>",
+        "text": "<p>Every household keeps a katta pai by the door, the one grabbed without thinking, on the way out for a market run.</p><p>Folded under an arm, bright enough to be picked out from the end of the street. Veyil keeps that brightness, and that way of being carried: the same readiness, made for the open sun.</p>",
         "scene_alt": "Morning sun rippling across an ochre wall with a small shuttered window",
         "scene_2_alt": "A lattice window set in a sunlit ochre wall",
         "caption": "The market run"
@@ -98,7 +98,7 @@
             "handle": "nizhal",
             "name": "Nizhal",
             "kind": "Shoulder baguette",
-            "text": "The chequer of the tiled floor, taken onto the shoulder — long, low and unhurried, the way the hour is.",
+            "text": "The chequer of the tiled floor, taken onto the shoulder, long, low and unhurried, the way the hour is.",
             "alt": "Nizhal shoulder baguette tucked under an arm: navy, rust and natural chequered paai with a tan leather strap",
             "fallback_image": "bag-nizhal.jpg",
             "fallback_weave": "weave-nizhal.jpg"
@@ -112,7 +112,7 @@
         "hour": "nizhal",
         "title": "Nizhal",
         "flip": true,
-        "text": "<p>There’s a particular kind of afternoon — too warm to be outside, quiet enough that the tiles hold the light in patches.</p><p>It comes through the grill and lies across the floor in squares, and the house goes quiet behind it. Nizhal is that pause: structured, close, unhurried. The shape of an afternoon, slow.</p>",
+        "text": "<p>There’s a particular kind of afternoon, too warm to be outside, quiet enough that the tiles hold the light in patches.</p><p>It comes through the grill and lies across the floor in squares, and the house goes quiet behind it. Nizhal is that pause: structured, close, unhurried. The shape of an afternoon, slow.</p>",
         "scene_alt": "The shadow of a woman crossing a patch of afternoon light on a wall",
         "scene_2_alt": "The shadow of leaves falling across a pale wall",
         "caption": "The tiles, holding the light"
@@ -135,7 +135,7 @@
             "handle": "maalai",
             "name": "Maalai",
             "kind": "Domed tote",
-            "text": "Black and beige — the paai in its oldest colouring, the one nobody thinks to call a pattern.",
+            "text": "Black and beige, the paai in its oldest colouring, the one nobody thinks to call a pattern.",
             "alt": "Maalai domed tote: black and natural striped paai with black leather straps and base",
             "fallback_image": "bag-maalai.jpg",
             "fallback_weave": "weave-maalai.jpg"
@@ -149,7 +149,7 @@
         "hour": "maalai",
         "title": "Maalai",
         "flip": false,
-        "text": "<p>A paai, laid out flat, holds an entire gathering — from food and conversation to people settling in around it.</p><p>Maalai carries that same instinct into a tote: wide and unfussy, made to hold whatever a day brings into it. Not only evenings, but just everything.</p>",
+        "text": "<p>A paai, laid out flat, holds an entire gathering, from food and conversation to people settling in around it.</p><p>Maalai carries that same instinct into a tote: wide and unfussy, made to hold whatever a day brings into it. Not only evenings, but just everything.</p>",
         "scene_alt": "Low evening sun breaking through the branches of an old tree",
         "scene_2_alt": "A cup of tea and a plate of fritters, seen from above",
         "caption": "When people come"
@@ -172,7 +172,7 @@
             "handle": "vizha-long-clutch",
             "name": "Long Clutch",
             "kind": "Vizha · long clutch sling",
-            "text": "One length of paai runs unbroken across the back, over the flap and down the front — a single piece, folded rather than joined.",
+            "text": "One length of paai runs unbroken across the back, over the flap and down the front, a single piece, folded rather than joined.",
             "alt": "Vizha long clutch held against the hip: wine and natural paai bound in aubergine leather",
             "fallback_image": "bag-vizha-clutch.jpg",
             "fallback_weave": "weave-vizha-clutch.jpg"
@@ -183,9 +183,9 @@
           "settings": {
             "handle": "vizha-half-moon",
             "name": "Half Moon",
-            "kind": "Vizha · half-moon clutch",
+            "kind": "Vizha · half moon clutch",
             "text": "The weave rises on both sides of a leather handle and meets at the top: a mat folded once, and carried by the fold.",
-            "alt": "Vizha half-moon clutch on a ledge: magenta and emerald paai with a tan leather handle",
+            "alt": "Vizha half moon clutch on a ledge: magenta and emerald paai with a tan leather handle",
             "fallback_image": "bag-vizha-halfmoon.jpg",
             "fallback_weave": "weave-vizha.jpg"
           }
@@ -199,7 +199,7 @@
         "hour": "vizha",
         "title": "Vizha",
         "flip": true,
-        "text": "<p>Some colours are kept back. They are not for the floor or the afternoon; they come out of the cupboard for weddings, for temple nights, for the days a house fills up.</p><p>Vizha is woven in those — jewelled greens, magentas, wine — in two pieces made to be held rather than worn.</p>",
+        "text": "<p>Some colours are kept back. They are not for the floor or the afternoon; they come out of the cupboard for weddings, for temple nights, for the days a house fills up.</p><p>Vizha is woven in those: jewelled greens, magentas, wine. Two pieces, made to be held rather than worn.</p>",
         "scene_alt": "A fountain of golden sparks from a festival firework at night",
         "scene_2_alt": "Gold bangles stacked in a shop, close",
         "caption": "The night worth dressing for"
