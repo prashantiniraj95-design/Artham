@@ -211,7 +211,7 @@ for (const f of fs.readdirSync(path.join(THEME, 'assets'))) {
 fs.copyFileSync(path.join(ROOT, 'tools', 'preview-cart.js'), path.join(OUT, 'preview.js'));
 
 console.log('Rendering the Naal theme →', path.relative(ROOT, OUT));
-await renderPage('index.html', 'index', { title: 'Artham — Naal, Collection One' });
+await renderPage('index.html', 'index', { title: 'Artham · Naal, Collection One' });
 await renderPage('collection.html', 'collection', { collection: collections.naal, title: 'Naal' });
 for (const product of products) {
   await renderPage(`product-${product.handle}.html`, 'product', { product, title: product.title });
