@@ -1,0 +1,31 @@
+{%- comment -%}
+  An image that comes from the theme editor if one was chosen,
+  and from the theme's own files if not.
+
+  image:    a Shopify image (image_picker, product.featured_image …) — optional
+  fallback: a filename in /assets, used when `image` is blank
+  alt, sizes, lazy (default true), class
+{%- endcomment -%}
+{%- liquid
+  assign is_lazy = true
+  if lazy == false
+    assign is_lazy = false
+  endif
+  assign sizes_attr = sizes | default: '100vw'
+-%}
+{%- if image != blank -%}
+  <img
+    src="{{ image | image_url: width: 1400 }}"
+    srcset="{{ image | image_url: width: 600 }} 600w, {{ image | image_url: width: 1000 }} 1000w, {{ image | image_url: width: 1400 }} 1400w, {{ image | image_url: width: 2200 }} 2200w"
+    sizes="{{ sizes_attr }}"
+    width="{{ image.width }}" height="{{ image.height }}"
+    alt="{{ alt | default: image.alt | escape }}"
+    {% if class %}class="{{ class }}"{% endif %}
+    {% if is_lazy %}loading="lazy"{% else %}fetchpriority="high"{% endif %} decoding="async">
+{%- elsif fallback != blank -%}
+  <img
+    src="{{ fallback | asset_url }}"
+    alt="{{ alt | escape }}"
+    {% if class %}class="{{ class }}"{% endif %}
+    {% if is_lazy %}loading="lazy"{% else %}fetchpriority="high"{% endif %} decoding="async">
+{%- endif -%}

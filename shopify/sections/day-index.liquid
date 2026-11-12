@@ -1,0 +1,74 @@
+{%- comment -%} Introduces Naal and lays the four hours out as a line you can step onto. {%- endcomment -%}
+<section class="day" id="naal">
+  <div class="day__head">
+    <div class="day__title">
+      <p class="label reveal">{{ section.settings.eyebrow }}</p>
+      <span class="numeral reveal">I</span>
+      <h2 class="display reveal">{{ section.settings.title }}</h2>
+      <p class="gloss reveal"><span class="tamil" lang="ta">{{ section.settings.tamil }}</span><em>{{ section.settings.gloss }}</em></p>
+    </div>
+    <div class="day__lede reveal">
+      <p>{{ section.settings.text }}</p>
+    </div>
+  </div>
+
+  <div class="day__hours">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign key = block.settings.hour
+        capture tamil
+          render 'hour', handle: key, show: 'tamil'
+        endcapture
+        capture numeral
+          render 'hour', handle: key, show: 'numeral'
+        endcapture
+        capture period
+          render 'hour', handle: key, show: 'period'
+        endcapture
+        assign fallback = 'weave-' | append: key | append: '.jpg'
+        assign delay = forloop.index0 | times: 110
+      -%}
+      <a class="reveal" href="#{{ key }}" style="--d: {{ delay }}ms" data-hour-hover="{{ key }}" {{ block.shopify_attributes }}>
+        <span class="meta"><span class="label">{{ numeral }}</span><span class="label label--fg">{{ period }}</span></span>
+        <div class="swatch">{% render 'img', image: block.settings.image, fallback: fallback, alt: '', sizes: '25vw' %}</div>
+        <span class="name">{{ block.settings.title }}<span class="tamil" lang="ta">{{ tamil }}</span></span>
+        <p class="what">{{ block.settings.what }}</p>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+<nav class="dial" data-dial aria-label="Chapters">
+  {%- for block in section.blocks -%}
+    <a href="#{{ block.settings.hour }}" data-dial-link="{{ block.settings.hour }}"><span>{{ block.settings.title }}</span></a>
+  {%- endfor -%}
+</nav>
+
+{% schema %}
+{
+  "name": "The day",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line", "default": "Collection One" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Naal" },
+    { "type": "text", "id": "tamil", "label": "Title in Tamil", "default": "நாள்" },
+    { "type": "text", "id": "gloss", "label": "Meaning", "default": "a day" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "The collection follows one day through one house. Sun on a market run. Shadow crossing the tiles at noon. The mat unrolled when people arrive. And the colours kept back, folded away, for the nights that deserve them." }
+  ],
+  "blocks": [
+    {
+      "type": "hour",
+      "name": "Hour",
+      "settings": [
+        { "type": "select", "id": "hour", "label": "Hour", "default": "veyil", "options": [
+          { "value": "veyil", "label": "Veyil" }, { "value": "nizhal", "label": "Nizhal" },
+          { "value": "maalai", "label": "Maalai" }, { "value": "vizha", "label": "Vizha" } ] },
+        { "type": "text", "id": "title", "label": "Name", "default": "Veyil" },
+        { "type": "text", "id": "what", "label": "One line", "default": "The hand bag" },
+        { "type": "image_picker", "id": "image", "label": "Weave swatch" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "The day" }]
+}
+{% endschema %}

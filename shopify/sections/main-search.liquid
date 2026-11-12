@@ -1,0 +1,27 @@
+<section class="shell" data-hour="dawn" data-hour-pin>
+  <header class="shell__head">
+    <p class="label">Search</p>
+    <h1 class="display">{% if search.performed %}“{{ search.terms }}”{% else %}Looking for{% endif %}</h1>
+    <form class="intro" action="{{ routes.search_url }}" method="get" role="search">
+      <label class="field"><span class="label label--fg">What are you looking for?</span>
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Veyil, tote, clutch…"></label>
+      <input type="hidden" name="type" value="product">
+      <button class="link" type="submit">Search</button>
+    </form>
+  </header>
+  {%- if search.performed -%}
+    {%- if search.results.size > 0 -%}
+      <div class="grid">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="cart__empty"><p>Nothing by that name.</p><a class="link" href="{{ routes.collections_url }}/naal">Shop Naal</a></div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

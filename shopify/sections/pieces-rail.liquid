@@ -1,0 +1,56 @@
+{%- liquid
+  assign collection = section.settings.collection
+  if collection == blank
+    assign collection = collections['naal']
+  endif
+  assign url = routes.collections_url | append: '/naal'
+  if collection != blank and collection.url
+    assign url = collection.url
+  endif
+-%}
+<section class="rail" data-hour="dawn">
+  <div class="rail__head">
+    <div>
+      <p class="label reveal">{{ section.settings.eyebrow }}</p>
+      <h2 class="display reveal">{{ section.settings.title }}</h2>
+    </div>
+    <a class="link reveal" href="{{ url }}">{{ section.settings.link_label }}</a>
+  </div>
+
+  <div class="rail__track">
+    {%- if collection != blank and collection.products.size > 0 -%}
+      {%- for product in collection.products limit: 12 -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Until the products exist, show the five pieces from the theme's own files. {%- endcomment -%}
+      {%- assign names = 'Veyil|Nizhal|Maalai|Vizha — Long Clutch|Vizha — Half Moon' | split: '|' -%}
+      {%- assign kinds = 'Circle-handle hand bag|Shoulder baguette|Domed tote|Long clutch|Half-moon clutch' | split: '|' -%}
+      {%- assign files = 'bag-veyil.jpg|bag-nizhal.jpg|bag-maalai.jpg|bag-vizha-clutch.jpg|bag-vizha-halfmoon.jpg' | split: '|' -%}
+      {%- assign tags = 'Morning|Afternoon|Evening|Festival night|Festival night' | split: '|' -%}
+      {%- for name in names -%}
+        <a class="card reveal" href="{{ url }}">
+          <div class="card__media">
+            <span class="card__tag">{{ tags[forloop.index0] }}</span>
+            <img src="{{ files[forloop.index0] | asset_url }}" alt="{{ name }}" loading="lazy" decoding="async">
+          </div>
+          <div class="card__row"><h3 class="card__name">{{ name }}</h3></div>
+          <p class="card__type">{{ kinds[forloop.index0] }}</p>
+        </a>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The pieces",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to use the collection with the handle “naal”." },
+    { "type": "text", "id": "eyebrow", "label": "Small line", "default": "Five pieces · made in limited number" },
+    { "type": "text", "id": "title", "label": "Title", "default": "The whole day" },
+    { "type": "text", "id": "link_label", "label": "Link", "default": "Shop Naal" }
+  ],
+  "presets": [{ "name": "The pieces" }]
+}
+{% endschema %}

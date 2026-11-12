@@ -6,3 +6,6 @@ dist/
 ._*
 Thumbs.db
 desktop.ini
+
+# installed by npm for the theme preview tool
+node_modules/

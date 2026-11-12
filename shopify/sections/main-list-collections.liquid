@@ -1,0 +1,18 @@
+<section class="shell" data-hour="dawn" data-hour-pin>
+  <header class="shell__head">
+    <p class="label">{{ shop.name }}</p>
+    <h1 class="display">Collections</h1>
+  </header>
+  <div class="grid">
+    {%- for collection in collections -%}
+      <a class="card reveal" href="{{ collection.url }}">
+        <div class="card__media">{% render 'img', image: collection.featured_image, fallback: 'craft-rolled-paai.jpg', alt: collection.title, sizes: '(min-width: 860px) 30vw, 50vw' %}</div>
+        <div class="card__row"><h2 class="card__name">{{ collection.title }}</h2><span class="card__price">{{ collection.products_count }} pieces</span></div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

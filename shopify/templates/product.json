@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "a1": { "type": "assurance", "settings": { "text": "Woven by hand in Pathamadai — no two quite alike" } },
+        "a2": { "type": "assurance", "settings": { "text": "Leather, hand-finished" } },
+        "a3": { "type": "assurance", "settings": { "text": "Made in limited number" } },
+        "f1": { "type": "fold", "settings": { "title": "The weave", "open": true, "text": "<p>Korai grass, split by hand, soaked, dyed and woven into paai on the loom in Pathamadai. At its finest the weave is worked wet, thread by thread, until it folds like cloth.</p><p>A stripe that wanders or a shade that shifts is the weaver’s hand, and the reason no two pieces are quite alike.</p>" } },
+        "f2": { "type": "fold", "settings": { "title": "Materials & make", "open": false, "text": "<p>Korai paai hand-woven in Pathamadai, Tamil Nadu. Leather, hand-finished. Made in limited number.</p>" } },
+        "f3": { "type": "fold", "settings": { "title": "Care", "open": false, "text": "<p>Keep the paai dry and out of long, direct damp. Dust with a soft, dry cloth. Store it filled and upright, the way a mat is kept rolled — never crushed flat under weight.</p>" } }
+      },
+      "block_order": ["a1", "a2", "a3", "f1", "f2", "f3"],
+      "settings": {}
+    },
+    "rail": { "type": "pieces-rail", "settings": { "eyebrow": "The rest of the day", "title": "Naal", "link_label": "Shop all" } }
+  },
+  "order": ["main", "rail"]
+}

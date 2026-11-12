@@ -1,0 +1,28 @@
+<div class="drawer" id="cartDrawer" data-drawer aria-hidden="true">
+  <div class="drawer__veil" data-drawer-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your bag" tabindex="-1">
+    <div class="drawer__head">
+      <h2>Your bag</h2>
+      <button class="label label--fg" type="button" data-drawer-close>Close</button>
+    </div>
+    <div class="drawer__body" data-drawer-body>
+      {%- if cart.item_count > 0 -%}
+        {% render 'cart-lines', compact: true %}
+      {%- else -%}
+        <div class="cart__empty"><p>Nothing carried yet.</p><a class="link" href="{{ routes.collections_url }}/naal">Shop Naal</a></div>
+      {%- endif -%}
+    </div>
+    {%- if cart.item_count > 0 -%}
+      <div class="drawer__foot">
+        <div class="row"><span>Subtotal</span><b>{{ cart.total_price | money_without_trailing_zeros }}</b></div>
+        <small>Taxes and shipping are worked out at checkout.</small>
+        <form action="{{ routes.cart_url }}" method="post"><button class="btn btn--full" type="submit" name="checkout">Checkout</button></form>
+        <a class="link" href="{{ routes.cart_url }}" style="justify-self: center">View bag</a>
+      </div>
+    {%- endif -%}
+  </aside>
+</div>
+
+{% schema %}
+{ "name": "Cart drawer", "settings": [] }
+{% endschema %}

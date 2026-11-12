@@ -1,0 +1,145 @@
+{%- comment -%}
+  One hour of the day. The whole page takes on this chapter's light while it is in view.
+  Photographs fall back to the theme's own files (scene-<hour>-1.jpg, scene-<hour>-2.jpg,
+  light-<hour>.jpg) until you choose your own in the theme editor.
+{%- endcomment -%}
+{%- liquid
+  assign key = section.settings.hour
+  capture tamil
+    render 'hour', handle: key, show: 'tamil'
+  endcapture
+  capture meaning
+    render 'hour', handle: key, show: 'meaning'
+  endcapture
+  capture numeral
+    render 'hour', handle: key, show: 'numeral'
+  endcapture
+  capture period
+    render 'hour', handle: key, show: 'period'
+  endcapture
+  capture time
+    render 'hour', handle: key, show: 'time'
+  endcapture
+  assign scene_1 = 'scene-' | append: key | append: '-1.jpg'
+  assign scene_2 = 'scene-' | append: key | append: '-2.jpg'
+  assign light = 'light-' | append: key | append: '.jpg'
+  assign piece_count = section.blocks.size
+-%}
+<section class="chapter chapter--{{ key }}{% if section.settings.flip %} chapter--flip{% endif %}" id="{{ key }}" data-hour="{{ key }}">
+  <span class="chapter__ghost" lang="ta" aria-hidden="true" data-parallax-x="0.05">{{ tamil }}</span>
+
+  <div class="chapter__grid">
+    <header class="chapter__head">
+      <p class="chapter__meta reveal">
+        <span class="label">Chapter {{ numeral }}</span><span class="dot"></span>
+        <span class="label label--fg">{{ period }}</span><span class="dot"></span>
+        <span class="label label--fg">{{ time }}</span>
+      </p>
+      <span class="chapter__numeral reveal" aria-hidden="true">{{ numeral }}</span>
+      <h2 class="display chapter__title reveal">{{ section.settings.title }}</h2>
+      <p class="chapter__gloss reveal"><span class="tamil" lang="ta">{{ tamil }}</span><em>{{ meaning }}</em></p>
+    </header>
+
+    <div class="chapter__scene">
+      <figure class="scene">
+        <div class="scene__main unveil" data-parallax="0.05">
+          {% render 'img', image: section.settings.scene, fallback: scene_1, alt: section.settings.scene_alt, sizes: '(min-width: 860px) 56vw, 86vw' %}
+        </div>
+        <div class="scene__inset unveil" style="--d: 260ms" data-parallax="-0.07">
+          {% render 'img', image: section.settings.scene_2, fallback: scene_2, alt: section.settings.scene_2_alt, sizes: '(min-width: 860px) 22vw, 36vw' %}
+        </div>
+        <figcaption class="scene__caption caption"><span>{{ section.settings.caption }}</span><span>{{ time }}</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="chapter__story reveal">
+      <hr class="rule">
+      <div class="prose">{{ section.settings.text }}</div>
+    </div>
+
+    <div class="chapter__pieces{% if piece_count > 1 %} chapter__pieces--two{% endif %}">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign product = block.settings.product
+          if product == blank and block.settings.handle != blank
+            assign product = all_products[block.settings.handle]
+          endif
+          assign has_product = false
+          if product != blank and product.id
+            assign has_product = true
+          endif
+          assign url = routes.collections_url | append: '/naal'
+          assign image = block.settings.image
+          if has_product
+            assign url = product.url
+            if image == blank
+              assign image = product.featured_image
+            endif
+          endif
+        -%}
+        <article class="piece" {{ block.shopify_attributes }}>
+          <a class="piece__plate unveil" href="{{ url }}" aria-label="{{ block.settings.name }} — {{ block.settings.kind }}">
+            {% render 'img', image: image, fallback: block.settings.fallback_image, alt: block.settings.alt, sizes: '(min-width: 860px) 30vw, 100vw' %}
+            {%- if section.settings.show_light -%}
+              <span class="piece__light" style="background-image: url('{{ light | asset_url }}')" data-parallax="0.04" aria-hidden="true"></span>
+            {%- endif -%}
+          </a>
+          <div class="piece__info reveal">
+            <p class="label">{{ block.settings.kind }}</p>
+            <h3 class="piece__name">{{ block.settings.name }}</h3>
+            <p class="piece__text">{{ block.settings.text }}</p>
+            <div class="piece__weave">
+              <span class="chip">{% render 'img', image: block.settings.weave, fallback: block.settings.fallback_weave, alt: '', sizes: '64px' %}</span>
+              <span class="label label--fg">The weave · {{ section.settings.title }}</span>
+            </div>
+            {%- if has_product -%}
+              <p class="piece__price">{% if product.available %}{{ product.price | money_without_trailing_zeros }}{% else %}Sold out{% endif %}</p>
+            {%- endif -%}
+            <a class="link" href="{{ url }}">View the piece</a>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Chapter",
+  "settings": [
+    { "type": "select", "id": "hour", "label": "Hour", "default": "veyil", "info": "Sets the chapter's light, its Tamil name, numeral and time.", "options": [
+      { "value": "veyil", "label": "Veyil — morning sun" }, { "value": "nizhal", "label": "Nizhal — afternoon shade" },
+      { "value": "maalai", "label": "Maalai — evening" }, { "value": "vizha", "label": "Vizha — festival night" } ] },
+    { "type": "text", "id": "title", "label": "Title", "default": "Veyil" },
+    { "type": "checkbox", "id": "flip", "label": "Mirror the layout", "default": false },
+    { "type": "richtext", "id": "text", "label": "Story", "default": "<p>Every household keeps a katta pai by the door.</p>" },
+    { "type": "header", "content": "Photographs" },
+    { "type": "image_picker", "id": "scene", "label": "Large photograph", "info": "Portrait, 4:5. The hour itself — light, not product." },
+    { "type": "text", "id": "scene_alt", "label": "Large photograph — description" },
+    { "type": "image_picker", "id": "scene_2", "label": "Small photograph", "info": "Portrait, 3:4. A detail from the same hour." },
+    { "type": "text", "id": "scene_2_alt", "label": "Small photograph — description" },
+    { "type": "text", "id": "caption", "label": "Caption" },
+    { "type": "checkbox", "id": "show_light", "label": "Lay the hour's light over the product photograph", "default": true, "info": "Switch off once the bags have been photographed in their own light." }
+  ],
+  "blocks": [
+    {
+      "type": "piece",
+      "name": "Piece",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "handle", "label": "Product handle", "info": "Used when no product is chosen above, so the page links itself up once the product exists." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Veyil" },
+        { "type": "text", "id": "kind", "label": "Kind of bag", "default": "Circle-handle hand bag" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "image_picker", "id": "image", "label": "Photograph", "info": "Leave empty to use the product's first photograph." },
+        { "type": "text", "id": "alt", "label": "Photograph — description" },
+        { "type": "image_picker", "id": "weave", "label": "Weave swatch" },
+        { "type": "text", "id": "fallback_image", "label": "Theme file for the photograph" },
+        { "type": "text", "id": "fallback_weave", "label": "Theme file for the swatch" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [{ "name": "Chapter" }]
+}
+{% endschema %}

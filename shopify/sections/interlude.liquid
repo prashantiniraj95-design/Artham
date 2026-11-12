@@ -1,0 +1,35 @@
+{%- comment -%} A single line between two hours — with or without a photograph behind it. {%- endcomment -%}
+{%- if section.settings.image != blank or section.settings.fallback != blank -%}
+  <section class="interlude interlude--image"{% if section.settings.hour != 'none' %} data-hour="{{ section.settings.hour }}"{% endif %}>
+    <div class="bg" data-parallax="0.1">
+      {% render 'img', image: section.settings.image, fallback: section.settings.fallback, alt: section.settings.alt, sizes: '100vw' %}
+    </div>
+    <div class="inner">
+      {%- if section.settings.eyebrow != blank -%}<span class="label reveal">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <p class="reveal">{{ section.settings.text }}</p>
+    </div>
+  </section>
+{%- else -%}
+  <section class="interlude"{% if section.settings.hour != 'none' %} data-hour="{{ section.settings.hour }}"{% endif %}>
+    {%- if section.settings.eyebrow != blank -%}<span class="label reveal">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    <p class="reveal">{{ section.settings.text }}</p>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Interlude",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line" },
+    { "type": "textarea", "id": "text", "label": "Line", "default": "Tucked away behind the door until the next time." },
+    { "type": "image_picker", "id": "image", "label": "Photograph (optional)" },
+    { "type": "text", "id": "fallback", "label": "Theme file for the photograph" },
+    { "type": "text", "id": "alt", "label": "Photograph — description" },
+    { "type": "select", "id": "hour", "label": "Light", "default": "none", "options": [
+      { "value": "none", "label": "Keep the light of the chapter before" }, { "value": "dawn", "label": "Paper" },
+      { "value": "veyil", "label": "Veyil" }, { "value": "nizhal", "label": "Nizhal" },
+      { "value": "maalai", "label": "Maalai" }, { "value": "vizha", "label": "Vizha" } ] }
+  ],
+  "presets": [{ "name": "Interlude" }]
+}
+{% endschema %}

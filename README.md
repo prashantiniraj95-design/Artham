@@ -115,3 +115,12 @@ Still to add:
 - Everything respects `prefers-reduced-motion` and `prefers-color-scheme`.
 - Sticky notes are keyboard-operable: `Tab` to one, arrow keys to move it,
   `Shift` + arrow to move it further.
+
+---
+
+## The Naal store (Shopify)
+
+The bags — Collection One, **Naal** — have their own Shopify theme in
+[`/shopify`](shopify). How to install it, what is still a stand-in, and the
+shot list for the photographs are in
+[`shopify-setup/README.md`](shopify-setup/README.md).

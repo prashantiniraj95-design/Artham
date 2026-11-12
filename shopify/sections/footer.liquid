@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="site-footer__top">
+    <div class="site-footer__brand">
+      <span class="logo-mark" style="-webkit-mask-image: url('{{ 'logo-mark.png' | asset_url }}'); mask-image: url('{{ 'logo-mark.png' | asset_url }}')" role="img" aria-label="{{ shop.name }}"></span>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    <div>
+      <h3>Naal</h3>
+      <ul>
+        <li><a href="{{ routes.root_url }}#veyil">Veyil · Morning</a></li>
+        <li><a href="{{ routes.root_url }}#nizhal">Nizhal · Afternoon</a></li>
+        <li><a href="{{ routes.root_url }}#maalai">Maalai · Evening</a></li>
+        <li><a href="{{ routes.root_url }}#vizha">Vizha · Festival night</a></li>
+        <li><a href="{{ routes.collections_url }}/naal">Shop all</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>The house</h3>
+      <ul>
+        {%- if section.settings.menu != blank and section.settings.menu.links.size > 0 -%}
+          {%- for link in section.settings.menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+        {%- else -%}
+          <li><a href="{{ routes.root_url }}#pathamadai">Pathamadai</a></li>
+          <li><a href="{{ routes.root_url }}#founders">Dhiraj &amp; Prashantini</a></li>
+          <li><a href="{{ routes.search_url }}">Search</a></li>
+        {%- endif -%}
+      </ul>
+    </div>
+    <div>
+      <h3>Write to us</h3>
+      <ul>
+        {%- if settings.instagram != blank -%}<li><a href="https://instagram.com/{{ settings.instagram }}" target="_blank" rel="noopener">Instagram · @{{ settings.instagram }}</a></li>{%- endif -%}
+        {%- if settings.whatsapp != blank -%}<li><a href="https://wa.me/{{ settings.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a></li>{%- endif -%}
+        {%- if settings.email != blank -%}<li><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></li>{%- endif -%}
+      </ul>
+    </div>
+  </div>
+  <p class="site-footer__word" aria-hidden="true">Naal</p>
+  <div class="site-footer__base">
+    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+    <span>Handwoven in Tamil Nadu</span>
+    <span>
+      {%- for policy in shop.policies -%}<a href="{{ policy.url }}">{{ policy.title }}</a>{% unless forloop.last %} · {% endunless %}{%- endfor -%}
+    </span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Korai paai hand-woven in Pathamadai, Tamil Nadu. Leather, hand-finished. Made in limited number." },
+    { "type": "link_list", "id": "menu", "label": "Menu for “The house”", "info": "Leave empty to use the built-in links." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+<section class="letter">
+  <p class="label reveal">{{ section.settings.eyebrow }}</p>
+  <h2 class="display reveal">{{ section.settings.title }}</h2>
+  <p class="reveal">{{ section.settings.text }}</p>
+  {%- form 'customer', class: 'letter__form reveal' -%}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <label class="visually-hidden" for="letterEmail">Email</label>
+    <input id="letterEmail" type="email" name="contact[email]" placeholder="Your email" autocomplete="email" required>
+    <button type="submit">Write to me</button>
+  {%- endform -%}
+  {%- if form.posted_successfully? -%}
+    <p class="letter__note">Thank you. We will write when there is something worth saying.</p>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Letter",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line", "default": "Made in limited number" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Before the next roll is cut." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Each piece is woven by hand, so there are only ever a few. Leave your email and we will write when Naal is restocked, and when the next collection is on the loom." }
+  ],
+  "presets": [{ "name": "Letter" }]
+}
+{% endschema %}

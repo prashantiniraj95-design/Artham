@@ -1,0 +1,31 @@
+<section class="shell" data-hour="dawn" data-hour-pin>
+  <div class="cart">
+    <header class="shell__head">
+      <p class="label">{{ cart.item_count }} {% if cart.item_count == 1 %}piece{% else %}pieces{% endif %}</p>
+      <h1 class="display">Your bag</h1>
+    </header>
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post">
+        {% render 'cart-lines' %}
+        <div class="cart__sum">
+          <div class="field" style="flex:1;min-width:240px;max-width:420px">
+            <label><span class="label label--fg">A note with your order</span>
+              <textarea name="note" rows="2">{{ cart.note }}</textarea></label>
+          </div>
+          <div style="text-align:right;display:grid;gap:14px;justify-items:end">
+            <span class="label label--fg">Subtotal</span>
+            <span class="total">{{ cart.total_price | money_without_trailing_zeros }}</span>
+            <small style="font-style:italic;color:var(--fg-soft)">Taxes and shipping are worked out at checkout.</small>
+            <button class="btn" type="submit" name="checkout">Checkout</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="cart__empty"><p>Nothing carried yet.</p><a class="btn" href="{{ routes.collections_url }}/naal">Shop Naal</a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

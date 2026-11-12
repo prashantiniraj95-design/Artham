@@ -1,0 +1,165 @@
+{%- comment -%}
+  The product page takes on the light of the hour the bag belongs to.
+  Which hour is worked out from the product's handle (veyil, nizhal, maalai, vizha…).
+{%- endcomment -%}
+{%- liquid
+  capture key
+    render 'hour', handle: product.handle, show: 'key'
+  endcapture
+  capture tamil
+    render 'hour', handle: product.handle, show: 'tamil'
+  endcapture
+  capture meaning
+    render 'hour', handle: product.handle, show: 'meaning'
+  endcapture
+  capture numeral
+    render 'hour', handle: product.handle, show: 'numeral'
+  endcapture
+  capture period
+    render 'hour', handle: product.handle, show: 'period'
+  endcapture
+  capture line
+    render 'hour', handle: product.handle, show: 'line'
+  endcapture
+  assign variant = product.selected_or_first_available_variant
+  assign scene_1 = 'scene-' | append: key | append: '-1.jpg'
+  assign scene_2 = 'scene-' | append: key | append: '-2.jpg'
+  assign weave = 'weave-' | append: key | append: '.jpg'
+  assign short_title = product.title | split: ' — ' | first
+-%}
+<div data-hour="{{ key | default: 'dawn' }}" data-hour-pin>
+  <section class="product">
+    <div class="product__gallery">
+      {%- for image in product.images -%}
+        <div class="shot{% if forloop.first %} unveil{% endif %}">
+          {%- if forloop.first -%}
+            {% render 'img', image: image, alt: image.alt, lazy: false, sizes: '(min-width: 860px) 54vw, 88vw' %}
+          {%- else -%}
+            {% render 'img', image: image, alt: image.alt, sizes: '(min-width: 860px) 54vw, 88vw' %}
+          {%- endif -%}
+        </div>
+        {%- if forloop.first and key != blank and section.settings.show_scenes -%}
+          <div class="pair">
+            <div class="shot"><img src="{{ scene_1 | asset_url }}" alt="" loading="lazy"></div>
+            <div class="shot"><img src="{{ weave | asset_url }}" alt="The weave, close" loading="lazy"></div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="product__panel">
+      <div class="product__sticky">
+        <p class="product__crumb">
+          <a class="label" href="{{ routes.collections_url }}/naal">Naal</a>
+          {%- if key != blank -%}<span class="dot"></span><span class="label label--fg">Chapter {{ numeral }} · {{ period }}</span>{%- endif -%}
+        </p>
+
+        <h1 class="display product__title">{{ short_title }}</h1>
+        {%- if key != blank -%}
+          <p class="product__gloss"><span class="tamil" lang="ta">{{ tamil }}</span><em>{{ meaning }}</em></p>
+        {%- endif -%}
+        {%- if product.type != blank -%}<p class="label label--fg product__type">{{ product.type }}{% if product.title contains ' — ' %} · {{ product.title | split: ' — ' | last }}{% endif %}</p>{%- endif -%}
+
+        <p class="product__price" data-price data-money="{{ shop.money_format | strip_html | escape }}">
+          {%- if variant.compare_at_price > variant.price -%}<s>{{ variant.compare_at_price | money_without_trailing_zeros }}</s>{%- endif -%}
+          {{ variant.price | money_without_trailing_zeros }}
+        </p>
+        <p class="product__tax">{{ section.settings.tax_note }}</p>
+
+        {%- if product.description != blank -%}
+          <div class="product__story"><div class="prose rte">{{ product.description }}</div></div>
+        {%- endif -%}
+
+        {%- form 'product', product, class: 'product__form', data-product-form: '' -%}
+          {%- unless product.has_only_default_variant -%}
+            <div class="product__options">
+              {%- for option in product.options_with_values -%}
+                <fieldset>
+                  <legend class="label label--fg">{{ option.name }}</legend>
+                  {%- for value in option.values -%}
+                    <label class="opt">
+                      <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}" data-option="{{ option.position }}"{% if option.selected_value == value %} checked{% endif %}>
+                      <span>{{ value }}</span>
+                    </label>
+                  {%- endfor -%}
+                </fieldset>
+              {%- endfor -%}
+            </div>
+            <script type="application/json" data-variants>{{ product.variants | json }}</script>
+          {%- endunless -%}
+          <input type="hidden" name="id" value="{{ variant.id }}" data-variant-id>
+          <div class="product__buy">
+            <button class="btn btn--full" type="submit" name="add" data-add{% unless variant.available %} disabled{% endunless %}>
+              {%- if variant.available -%}Add to bag{%- else -%}Sold out{%- endif -%}
+            </button>
+            {%- if section.settings.show_dynamic_checkout -%}{{ form | payment_button }}{%- endif -%}
+          </div>
+        {%- endform -%}
+
+        <ul class="product__assure">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'assurance' -%}<li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
+
+        <div class="folds">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'fold' -%}
+              <details class="fold" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+                <summary>{{ block.settings.title }}</summary>
+                <div class="fold__body">{{ block.settings.text }}</div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- if key != blank -%}
+    <section class="band">
+      <div class="bg" data-parallax="0.1"><img src="{{ scene_2 | asset_url }}" alt="" loading="lazy"></div>
+      <div class="inner">
+        <span class="label reveal">{{ period }} · {{ tamil }}</span>
+        <p class="reveal">{{ line }}</p>
+      </div>
+    </section>
+  {%- endif -%}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | json }},
+  "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+  {%- if product.featured_image %}"image": {{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }},{% endif %}
+  "offers": {
+    "@type": "Offer",
+    "price": {{ variant.price | divided_by: 100.0 | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+    "url": {{ shop.url | append: product.url | json }}
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "text", "id": "tax_note", "label": "Line under the price", "default": "Inclusive of all taxes" },
+    { "type": "checkbox", "id": "show_scenes", "label": "Show the hour's photograph and the weave in the gallery", "default": true },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show the quick-buy button", "default": false }
+  ],
+  "blocks": [
+    { "type": "assurance", "name": "Small promise", "settings": [
+      { "type": "text", "id": "text", "label": "Text", "default": "Woven by hand — no two quite alike" } ] },
+    { "type": "fold", "name": "Fold-out", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Materials & make" },
+      { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Korai paai hand-woven in Pathamadai, Tamil Nadu. Leather, hand-finished.</p>" },
+      { "type": "checkbox", "id": "open", "label": "Open to begin with", "default": false } ] }
+  ]
+}
+{% endschema %}

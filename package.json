@@ -1,0 +1,12 @@
+{
+  "name": "artham",
+  "private": true,
+  "description": "Artham — the storyboard site and the Naal Shopify theme",
+  "scripts": {
+    "preview": "node tools/shopify-preview.mjs",
+    "preview:serve": "node tools/shopify-preview.mjs && python3 -m http.server 8080 -d dist/naal-preview"
+  },
+  "devDependencies": {
+    "liquidjs": "^10.21.1"
+  }
+}

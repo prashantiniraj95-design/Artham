@@ -1,0 +1,29 @@
+{%- comment -%} product: a product · tag: optional override for the little label {%- endcomment -%}
+{%- liquid
+  capture key
+    render 'hour', handle: product.handle, show: 'key'
+  endcapture
+  capture tamil
+    render 'hour', handle: product.handle, show: 'tamil'
+  endcapture
+  capture period
+    render 'hour', handle: product.handle, show: 'period'
+  endcapture
+  assign second = product.images[1]
+-%}
+<a class="card reveal" href="{{ product.url }}" data-hour-hover="{{ key }}">
+  <div class="card__media">
+    {%- if period != blank -%}<span class="card__tag">{{ tag | default: period }}</span>{%- endif -%}
+    {% render 'img', image: product.featured_image, alt: product.title, sizes: '(min-width: 860px) 30vw, 50vw' %}
+    {%- if second -%}
+      {% render 'img', image: second, alt: '', sizes: '(min-width: 860px) 30vw, 50vw' %}
+    {%- endif -%}
+  </div>
+  <div class="card__row">
+    <h3 class="card__name">{{ product.title }}{% if tamil != blank %}<span class="tamil" lang="ta">{{ tamil }}</span>{% endif %}</h3>
+    <span class="card__price">
+      {%- if product.available -%}{{ product.price | money_without_trailing_zeros }}{%- else -%}Sold out{%- endif -%}
+    </span>
+  </div>
+  {%- if product.type != blank -%}<p class="card__type">{{ product.type }}</p>{%- endif -%}
+</a>

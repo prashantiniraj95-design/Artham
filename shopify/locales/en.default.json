@@ -1,0 +1,11 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "bag": "Bag",
+    "search": "Search"
+  },
+  "products": {
+    "add_to_bag": "Add to bag",
+    "sold_out": "Sold out"
+  }
+}

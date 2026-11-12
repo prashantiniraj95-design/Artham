@@ -1,0 +1,49 @@
+<section class="place" id="pathamadai" data-hour="dawn">
+  <div class="place__hero">
+    <div class="bg" data-parallax="0.1">
+      {% render 'img', image: section.settings.image, fallback: 'craft-loom.jpg', alt: 'Korai grass on the loom: wine and natural stripes, half woven', sizes: '100vw' %}
+    </div>
+    <div class="inner">
+      <div>
+        <p class="label reveal">{{ section.settings.eyebrow }}</p>
+        <h2 class="display reveal">{{ section.settings.title }}</h2>
+      </div>
+      <p class="coords reveal">{{ section.settings.coords | newline_to_br }}</p>
+    </div>
+  </div>
+
+  <div class="place__body">
+    <div class="place__lede reveal"><p>{{ section.settings.lede }}</p></div>
+    <div class="place__text prose reveal">{{ section.settings.text }}</div>
+
+    <ol class="place__steps">
+      {%- for block in section.blocks -%}
+        <li class="reveal" style="--d: {{ forloop.index0 | times: 110 }}ms" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The place",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photograph" },
+    { "type": "text", "id": "eyebrow", "label": "Small line", "default": "The place · where the paai is woven" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Pathamadai" },
+    { "type": "textarea", "id": "coords", "label": "Side note", "default": "Tirunelveli, Tamil Nadu\nOn the banks of the Thamirabarani" },
+    { "type": "textarea", "id": "lede", "label": "Lede", "default": "Korai grass has been woven into paai here for generations — fine enough, it is said, to fold like silk." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>The mats that are slept on, sat on, unrolled for guests, folded under an arm on the way to the market. At its finest the weave is worked wet, thread by thread, until a mat folds like cloth.</p><p>It is a household craft there, not a rarity. We have changed only what it is asked to hold.</p>" }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Split" },
+      { "type": "textarea", "id": "text", "label": "Text" } ] }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "The place" }]
+}
+{% endschema %}

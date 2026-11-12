@@ -1,0 +1,57 @@
+{%- liquid
+  assign naal_url = routes.collections_url | append: '/naal'
+  assign over_film = false
+  if template.name == 'index'
+    assign over_film = true
+  endif
+-%}
+<header class="site-header{% if over_film %} is-over-film{% endif %}" data-header>
+  <nav class="site-header__nav" aria-label="Main">
+    {%- if section.settings.menu != blank and section.settings.menu.links.size > 0 -%}
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    {%- else -%}
+      <a href="{{ naal_url }}">Naal</a>
+      <a href="{{ routes.root_url }}#pathamadai">The Paai</a>
+      <a href="{{ routes.root_url }}#founders">The House</a>
+    {%- endif -%}
+  </nav>
+  <button class="site-header__menu" type="button" aria-label="Menu" aria-controls="menuSheet" aria-expanded="false" data-menu-open>
+    <span></span><span></span>
+  </button>
+
+  <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }} — home">
+    <span class="logo-word" style="-webkit-mask-image: url('{{ 'logo-wordmark.png' | asset_url }}'); mask-image: url('{{ 'logo-wordmark.png' | asset_url }}')"></span>
+  </a>
+
+  <div class="site-header__tools">
+    <a class="hide-s" href="{{ routes.search_url }}">Search</a>
+    <a href="{{ routes.cart_url }}" data-cart-open>Bag (<span class="cart-count" data-cart-count>{{ cart.item_count }}</span>)</a>
+  </div>
+</header>
+
+<div class="menu-sheet" id="menuSheet" data-menu aria-hidden="true">
+  <button class="menu-sheet__close" type="button" data-menu-close>Close</button>
+  <a href="{{ naal_url }}">Naal <em>Collection one</em></a>
+  <a href="{{ routes.root_url }}#veyil">Veyil <em>Morning</em></a>
+  <a href="{{ routes.root_url }}#nizhal">Nizhal <em>Afternoon</em></a>
+  <a href="{{ routes.root_url }}#maalai">Maalai <em>Evening</em></a>
+  <a href="{{ routes.root_url }}#vizha">Vizha <em>Festival night</em></a>
+  <a href="{{ routes.root_url }}#pathamadai">The Paai</a>
+  <a href="{{ routes.root_url }}#founders">The House</a>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "Leave empty to use the built-in links: Naal, The Paai, The House."
+    }
+  ]
+}
+{% endschema %}

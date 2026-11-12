@@ -1,0 +1,38 @@
+{%- paginate collection.products by 24 -%}
+<section class="shell" data-hour="dawn" data-hour-pin>
+  <header class="shell__head">
+    <p class="label">{{ section.settings.eyebrow }}</p>
+    <h1 class="display">{{ collection.title }}</h1>
+    <div class="intro prose">
+      {%- if collection.description != blank -%}{{ collection.description }}{%- else -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+  </header>
+
+  {%- if collection.products.size > 0 -%}
+    <div class="grid">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <div class="cart__empty"><p>Nothing here yet.</p></div>
+  {%- endif -%}
+
+  {%- if paginate.pages > 1 -%}
+    <nav class="label label--fg" style="display:flex;gap:24px;justify-content:center;margin-top:80px" aria-label="Pages">
+      {%- if paginate.previous -%}<a class="link" href="{{ paginate.previous.url }}">Earlier</a>{%- endif -%}
+      {%- if paginate.next -%}<a class="link" href="{{ paginate.next.url }}">More</a>{%- endif -%}
+    </nav>
+  {%- endif -%}
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line", "default": "Collection One · a day" },
+    { "type": "textarea", "id": "text", "label": "Text when the collection has no description", "default": "The collection follows one day through one house. Sun on a market run. Shadow crossing the tiles at noon. The mat unrolled when people arrive. And the colours kept back, folded away, for the nights that deserve them." }
+  ]
+}
+{% endschema %}

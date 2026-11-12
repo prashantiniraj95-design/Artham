@@ -1,0 +1,63 @@
+{%- comment -%}
+  The film. This is the first thing anyone sees: one day in one house, in four cuts.
+  Upload your own film in the theme editor; until then the theme plays its own.
+{%- endcomment -%}
+<section class="film" data-film>
+  <div class="film__media">
+    {%- if section.settings.video != blank -%}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '1920x' }}
+    {%- else -%}
+      <video autoplay muted loop playsinline preload="metadata" poster="{% if section.settings.poster != blank %}{{ section.settings.poster | image_url: width: 1920 }}{% else %}{{ 'naal-film-poster.jpg' | asset_url }}{% endif %}">
+        <source src="{{ 'naal-film.mp4' | asset_url }}" type="video/mp4">
+      </video>
+    {%- endif -%}
+  </div>
+
+  <button class="film__toggle" type="button" data-film-toggle aria-pressed="false">Pause film</button>
+
+  <div class="film__inner">
+    <div>
+      <p class="label film__eyebrow">{{ section.settings.eyebrow }}</p>
+      <div class="film__title-row">
+        <h1 class="display film__title"><span class="visually-hidden">{{ shop.name }} — </span>{{ section.settings.title }}</h1>
+        <p class="film__gloss">
+          <span class="tamil" lang="ta">{{ section.settings.tamil }}</span>
+          <span>{{ section.settings.gloss }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="film__aside">
+      <p>{{ section.settings.text }}</p>
+      <div class="film__cta">
+        <a class="btn btn--light" href="{{ section.settings.button_link | default: '#naal' }}">{{ section.settings.button_label }}</a>
+        <a class="link" href="#prologue">{{ section.settings.link_label }}</a>
+      </div>
+    </div>
+  </div>
+
+  <ol class="film__day" aria-label="The four hours of Naal">
+    <li><a class="film__hour" href="#veyil" data-film-hour><span>I · Veyil</span><i>Morning</i></a></li>
+    <li><a class="film__hour" href="#nizhal" data-film-hour><span>II · Nizhal</span><i>Afternoon</i></a></li>
+    <li><a class="film__hour" href="#maalai" data-film-hour><span>III · Maalai</span><i>Evening</i></a></li>
+    <li><a class="film__hour" href="#vizha" data-film-hour><span>IV · Vizha</span><i>Festival night</i></a></li>
+  </ol>
+</section>
+
+{% schema %}
+{
+  "name": "Hero film",
+  "settings": [
+    { "type": "video", "id": "video", "label": "Film", "info": "Landscape, 10–30 seconds, no sound needed. It plays muted on a loop. Four equal cuts — morning, afternoon, evening, night — line up with the four markers under the film." },
+    { "type": "image_picker", "id": "poster", "label": "Still shown while the film loads" },
+    { "type": "text", "id": "eyebrow", "label": "Small line", "default": "Collection One · Korai paai, Pathamadai" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Naal" },
+    { "type": "text", "id": "tamil", "label": "Title in Tamil", "default": "நாள்" },
+    { "type": "text", "id": "gloss", "label": "Meaning", "default": "a day" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "One day, through one house. Sun on a market run, shade across the tiles, the mat unrolled when people arrive — and the colours kept back for the nights that deserve them." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Shop Naal" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "link_label", "label": "Second link", "default": "Begin the day" }
+  ],
+  "presets": [{ "name": "Hero film" }]
+}
+{% endschema %}

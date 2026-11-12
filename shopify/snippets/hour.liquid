@@ -1,0 +1,69 @@
+{%- comment -%}
+  One source of truth for the four hours of Naal.
+  Give it a product handle (or an hour key) and ask for one fact back.
+
+  {% capture key %}{% render 'hour', handle: product.handle, show: 'key' %}{% endcapture %}
+
+  show: key | tamil | meaning | numeral | period | time | line
+{%- endcomment -%}
+{%- liquid
+  assign h = handle | default: '' | downcase
+  assign key = ''
+  if h contains 'veyil'
+    assign key = 'veyil'
+  elsif h contains 'nizhal'
+    assign key = 'nizhal'
+  elsif h contains 'maalai' or h contains 'malai'
+    assign key = 'maalai'
+  elsif h contains 'vizha'
+    assign key = 'vizha'
+  endif
+
+  case key
+    when 'veyil'
+      assign tamil = 'வெயில்'
+      assign meaning = 'sunlight'
+      assign numeral = 'I'
+      assign period = 'Morning'
+      assign time = '8:10 am'
+      assign line = 'Made to be carried in the open sun.'
+    when 'nizhal'
+      assign tamil = 'நிழல்'
+      assign meaning = 'shade'
+      assign numeral = 'II'
+      assign period = 'Afternoon'
+      assign time = '2:40 pm'
+      assign line = 'The shape of an afternoon, slow.'
+    when 'maalai'
+      assign tamil = 'மாலை'
+      assign meaning = 'evening'
+      assign numeral = 'III'
+      assign period = 'Evening'
+      assign time = '6:20 pm'
+      assign line = 'Not only evenings, but just everything.'
+    when 'vizha'
+      assign tamil = 'விழா'
+      assign meaning = 'festival'
+      assign numeral = 'IV'
+      assign period = 'Festival night'
+      assign time = '9:30 pm'
+      assign line = 'Some nights aren’t ordinary, and the bag shouldn’t be either.'
+  endcase
+
+  case show
+    when 'key'
+      echo key
+    when 'tamil'
+      echo tamil
+    when 'meaning'
+      echo meaning
+    when 'numeral'
+      echo numeral
+    when 'period'
+      echo period
+    when 'time'
+      echo time
+    when 'line'
+      echo line
+  endcase
+-%}

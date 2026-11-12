@@ -1,0 +1,18 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Artham — Naal",
+    "theme_version": "1.0.0",
+    "theme_author": "Artham",
+    "theme_documentation_url": "https://github.com/prashantiniraj95-design/Artham",
+    "theme_support_url": "https://github.com/prashantiniraj95-design/Artham"
+  },
+  {
+    "name": "How people reach you",
+    "settings": [
+      { "type": "text", "id": "instagram", "label": "Instagram handle", "info": "Without the @", "default": "artham.made" },
+      { "type": "text", "id": "whatsapp", "label": "WhatsApp number", "info": "Country code first, no plus sign, no spaces", "default": "919952062202" },
+      { "type": "text", "id": "email", "label": "Email address" }
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+{%- for item in cart.items -%}
+  <div class="cart__line" data-line="{{ forloop.index }}">
+    <a href="{{ item.url }}">{% render 'img', image: item.image, alt: item.product.title, sizes: '120px' %}</a>
+    <div>
+      <h3><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+      {%- if item.product.type != blank -%}<p class="meta">{{ item.product.type }}</p>{%- endif -%}
+      {%- unless item.product.has_only_default_variant -%}<p class="meta">{{ item.variant.title }}</p>{%- endunless -%}
+      <div class="tools">
+        <span class="qty">
+          <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="One fewer">−</a>
+          <span>{{ item.quantity }}</span>
+          <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="One more">+</a>
+        </span>
+        <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" data-qty="0">Remove</a>
+        {%- if compact -%}<span>{{ item.final_line_price | money_without_trailing_zeros }}</span>{%- endif -%}
+      </div>
+    </div>
+    {%- unless compact -%}<span class="card__price">{{ item.final_line_price | money_without_trailing_zeros }}</span>{%- endunless -%}
+  </div>
+{%- endfor -%}
