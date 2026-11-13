@@ -251,29 +251,9 @@
     },
     "founders": {
       "type": "founders",
-      "blocks": {
-        "f1": {
-          "type": "founder",
-          "settings": {
-            "name": "Dhiraj",
-            "role": "Co-founder",
-            "texture": "weave-maalai.jpg"
-          }
-        },
-        "f2": {
-          "type": "founder",
-          "settings": {
-            "name": "Prashantini",
-            "role": "Co-founder",
-            "fallback": "founder-prashantini.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2"
-      ],
-      "settings": {}
+      "settings": {
+        "sign": ""
+      }
     }
   },
   "order": [

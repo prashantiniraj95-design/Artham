@@ -35,7 +35,6 @@ The theme decides which hour a product belongs to from its handle, so keep
 | **Hero film** | A 20-second film cut from four still photographs | Real footage, uploaded in *Customize → Hero film*. Four equal cuts — morning, afternoon, evening, night — line up with the four markers under the film |
 | **Mood photographs** | Licensed stand-ins from Wikimedia Commons (`IMAGE-CREDITS.md`) | Your shoot — see the shot list below |
 | **Product photographs** | Lifted from the lookbook PDF, about 900px wide | The original high-resolution files (2000px or wider) |
-| **Dhiraj's portrait** | A woven tile with his initial | A portrait, 4:5, in *Customize → Founders* |
 | **Prices** | 0 in the import file; placeholders in the preview | Yours |
 | **Care text** | A general note for grass and leather | Your own wording, in *Customize → Product* |
 

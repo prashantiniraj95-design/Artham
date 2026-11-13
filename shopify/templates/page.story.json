@@ -1,26 +1,59 @@
 {
   "sections": {
-    "prologue": { "type": "prologue", "settings": {} },
+    "prologue": {
+      "type": "prologue",
+      "settings": {}
+    },
     "place": {
       "type": "place",
       "blocks": {
-        "s1": { "type": "step", "settings": { "title": "Split", "text": "Korai grass, split by hand into fine strands." } },
-        "s2": { "type": "step", "settings": { "title": "Soaked", "text": "Left in water until it softens enough to take the loom." } },
-        "s3": { "type": "step", "settings": { "title": "Dyed", "text": "In the colours each hour of the day asks for." } },
-        "s4": { "type": "step", "settings": { "title": "Woven", "text": "Worked wet, thread by thread, until the mat folds like cloth." } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Split",
+            "text": "Korai grass, split by hand into fine strands."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Soaked",
+            "text": "Left in water until it softens enough to take the loom."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Dyed",
+            "text": "In the colours each hour of the day asks for."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "title": "Woven",
+            "text": "Worked wet, thread by thread, until the mat folds like cloth."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
       "settings": {}
     },
     "founders": {
       "type": "founders",
-      "blocks": {
-        "f1": { "type": "founder", "settings": { "name": "Dhiraj", "role": "Co-founder", "texture": "weave-maalai.jpg" } },
-        "f2": { "type": "founder", "settings": { "name": "Prashantini", "role": "Co-founder", "fallback": "founder-prashantini.jpg" } }
-      },
-      "block_order": ["f1", "f2"],
-      "settings": {}
+      "settings": {
+        "sign": ""
+      }
     }
   },
-  "order": ["prologue", "place", "founders"]
+  "order": [
+    "prologue",
+    "place",
+    "founders"
+  ]
 }

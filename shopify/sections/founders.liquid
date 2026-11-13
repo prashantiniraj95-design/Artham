@@ -5,19 +5,11 @@
       <h2 class="display reveal">{{ section.settings.title }}</h2>
     </header>
 
+    {%- if section.blocks.size > 0 -%}
     <div class="founders__portraits">
       {%- for block in section.blocks -%}
-        <figure class="founder reveal" style="--d: {{ forloop.index0 | times: 160 }}ms" {{ block.shopify_attributes }}>
-          {%- if block.settings.portrait != blank or block.settings.fallback != blank -%}
-            <div class="founder__frame">
-              {% render 'img', image: block.settings.portrait, fallback: block.settings.fallback, alt: block.settings.name, sizes: '(min-width: 860px) 28vw, 46vw' %}
-            </div>
-          {%- else -%}
-            <div class="founder__frame founder__frame--empty">
-              <img src="{{ block.settings.texture | default: 'weave-maalai.jpg' | asset_url }}" alt="" loading="lazy">
-              <span aria-hidden="true">{{ block.settings.name | slice: 0 }}</span>
-            </div>
-          {%- endif -%}
+        <figure class="founder reveal" {{ block.shopify_attributes }}>
+          <div class="founder__frame">{% render 'img', image: block.settings.portrait, fallback: block.settings.fallback, alt: block.settings.name, sizes: '(min-width: 860px) 28vw, 46vw' %}</div>
           <figcaption>
             <h3 class="founder__name">{{ block.settings.name }}</h3>
             <p class="label founder__role">{{ block.settings.role }}</p>
@@ -26,10 +18,21 @@
         </figure>
       {%- endfor -%}
     </div>
+    {%- else -%}
+    <figure class="founders__photo">
+      <div class="frame unveil" data-parallax="0.04">
+        {% render 'img', image: section.settings.photo, fallback: 'founders.jpg', alt: section.settings.names, sizes: '(min-width: 860px) 48vw, 100vw' %}
+      </div>
+      <figcaption class="reveal">
+        <span class="founders__names">{{ section.settings.names }}</span>
+        <span class="label">{{ section.settings.role }}</span>
+      </figcaption>
+    </figure>
+    {%- endif -%}
 
     <div class="founders__story reveal">
       <div class="prose">{{ section.settings.text }}</div>
-      <p class="founders__sign"><span class="logo-mark" style="-webkit-mask-image: url('{{ 'logo-mark.png' | asset_url }}'); mask-image: url('{{ 'logo-mark.png' | asset_url }}')"></span>{{ section.settings.sign }}</p>
+      {%- if section.settings.sign != blank -%}<p class="founders__sign">{{ section.settings.sign }}</p>{%- endif -%}
     </div>
   </div>
 </section>
@@ -41,6 +44,9 @@
     { "type": "text", "id": "eyebrow", "label": "Small line", "default": "The house of Artham" },
     { "type": "inline_richtext", "id": "title", "label": "Title", "default": "Two habits <em>of seeing.</em>" },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>One of us reads pattern for a living. The other grew up a short road from the looms, where a mat is simply a mat.</p><p>Between those two habits of seeing, the weave was translated, carried across into a different object with its ordinariness intact.</p>" },
+    { "type": "image_picker", "id": "photo", "label": "Photograph of the founders", "info": "Portrait, 4:5. Used when no separate founder blocks are added." },
+    { "type": "text", "id": "names", "label": "Names under the photograph", "default": "Dhiraj & Prashantini" },
+    { "type": "text", "id": "role", "label": "Line beside the names", "default": "Founders" },
     { "type": "text", "id": "sign", "label": "Signature", "default": "Dhiraj & Prashantini" }
   ],
   "blocks": [
@@ -49,8 +55,7 @@
       { "type": "text", "id": "name", "label": "Name", "default": "Prashantini" },
       { "type": "text", "id": "role", "label": "Role", "default": "Co-founder" },
       { "type": "textarea", "id": "line", "label": "One or two lines" },
-      { "type": "text", "id": "fallback", "label": "Theme file for the portrait" },
-      { "type": "text", "id": "texture", "label": "Theme file shown when there is no portrait" } ] }
+      { "type": "text", "id": "fallback", "label": "Theme file for the portrait" } ] }
   ],
   "max_blocks": 2,
   "presets": [{ "name": "Founders" }]

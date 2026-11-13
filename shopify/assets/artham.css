@@ -23,13 +23,13 @@
   --plate: #e7dcc8;
   --logo-fill: linear-gradient(120deg, #b99a5c 0%, #9c7a37 55%, #7a5a1c 100%);
 
-  --serif-display: "Instrument Serif", "Newsreader", Georgia, serif;
-  --serif-text: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
-  --tamil: "Noto Serif Tamil", "Newsreader", serif;
+  --serif-display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --serif-text: "EB Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Marcellus", "Optima", "Gill Sans", "Helvetica Neue", sans-serif;
+  --tamil: "Noto Serif Tamil", "EB Garamond", serif;
 
   --gutter: clamp(20px, 4.2vw, 72px);
-  --header-h: 76px;
+  --header-h: 96px;
   --ease: cubic-bezier(0.22, 0.61, 0.21, 1);
   --hour-shift: 1100ms;
 }
@@ -218,7 +218,7 @@ main { position: relative; z-index: 2; }
 .cart-count { font-feature-settings: "tnum"; }
 
 @media (max-width: 860px) {
-  :root { --header-h: 62px; }
+  :root { --header-h: 78px; }
   .site-header__nav { display: none; }
   .site-header__menu { display: inline-flex; flex-direction: column; gap: 6px; width: 26px; padding: 10px 0; }
   .site-header__menu span { display: block; height: 1px; background: currentColor; }
@@ -792,3 +792,32 @@ main { position: relative; z-index: 2; }
   .js .unveil > *, .js .unveil img { -webkit-mask-image: none; mask-image: none; }
   .film__cue i { animation: none; }
 }
+
+/* ── type: Cormorant Garamond for display, EB Garamond for reading, Marcellus for labels ── */
+body { font-size: 19px; line-height: 1.6; }
+.display { font-weight: 400; letter-spacing: -0.012em; }
+.film__title, .day__title h2, .shell__head h1 { font-weight: 300; }
+.label, .link, .btn, .site-header__nav a, .site-header__tools a, .site-header__tools button, .caption, .fold summary { font-weight: 400; }
+.label { font-size: 11.5px; letter-spacing: 0.28em; }
+.piece__price, .card__price, .product__price { font-family: var(--serif-text); letter-spacing: 0.04em; font-size: 1.05em; }
+.prologue__quote, .interlude p, .band p { font-weight: 400; }
+
+/* ── header: the mark sits above the wordmark ── */
+.site-header__logo { flex-direction: column; gap: 9px; }
+.site-header__logo .logo-mark { width: 34px; }
+.site-header__logo .logo-word { width: 104px; }
+@media (max-width: 860px) {
+  .site-header__logo { gap: 7px; }
+  .site-header__logo .logo-mark { width: 27px; }
+  .site-header__logo .logo-word { width: 84px; }
+}
+
+/* ── founders: one photograph of the two of them ── */
+.founders__photo { grid-column: 1 / span 6; margin: 0; }
+.founders__photo .frame { aspect-ratio: 4 / 5; overflow: hidden; background: var(--plate); }
+.founders__photo img { width: 100%; height: 100%; object-fit: cover; }
+.founders__photo figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 18px; }
+.founders__names { font-family: var(--serif-display); font-size: clamp(30px, 3vw, 48px); line-height: 1; }
+.founders__story { grid-column: 8 / span 5; }
+.founders__sign { display: block; }
+@media (max-width: 860px) { .founders__photo, .founders__story { grid-column: 1 / -1; } }
